@@ -1,58 +1,52 @@
-"use strict";
+const initSlider = (callback) => {
+  const cb = callback();
 
-(() => {
+  const effectLevelLine = cb.effectLevelLine;
+  const effectLevelPin = cb.effectLevelPin;
+  const effectLevelLineDepth = cb.effectLevelLineDepth;
 
-  const initSlider = (callback) => {
-    const cb = callback();
+  effectLevelLineDepth.style.width = `${20}%`;
+  effectLevelPin.style.left = `${20}%`;
 
-    const effectLevelLine = cb.effectLevelLine;
-    const effectLevelPin = cb.effectLevelPin;
-    const effectLevelLineDepth = cb.effectLevelLineDepth;
+  effectLevelPin.addEventListener('mousedown', (evt) => {
+    evt.preventDefault();
 
-    effectLevelLineDepth.style.width = `${20}%`;
-    effectLevelPin.style.left = `${20}%`;
+    const shift = evt.clientX - effectLevelPin.getBoundingClientRect().left - effectLevelPin.offsetWidth / 2;
 
-    effectLevelPin.addEventListener('mousedown', (evt) => {
-      evt.preventDefault();
+    const onMouseMove = (moveEvt) => {
+      moveEvt.preventDefault();
 
-      const shift = evt.clientX - effectLevelPin.getBoundingClientRect().left - effectLevelPin.offsetWidth / 2;
+      const maxValue = effectLevelLine.offsetWidth;
+      let newValue = moveEvt.clientX - shift - effectLevelLine.getBoundingClientRect().left;
 
-      const onMouseMove = (moveEvt) => {
-        moveEvt.preventDefault();
+      if (newValue < 0) {
+        newValue = 0;
+      }
+      if (newValue > maxValue) {
+        newValue = maxValue;
+      }
 
-        const maxValue = effectLevelLine.offsetWidth;
-        let newValue = moveEvt.clientX - shift - effectLevelLine.getBoundingClientRect().left;
+      const scaleLevel = newValue / maxValue * 100;
 
-        if (newValue < 0) {
-          newValue = 0;
-        }
-        if (newValue > maxValue) {
-          newValue = maxValue;
-        }
+      effectLevelLineDepth.style.width = `${scaleLevel}%`;
+      effectLevelPin.style.left = `${scaleLevel}%`;
 
-        const scaleLevel = newValue / maxValue * 100;
+      const consty = cb.consty;
+      consty(scaleLevel);
+    };
 
-        effectLevelLineDepth.style.width = `${scaleLevel}%`;
-        effectLevelPin.style.left = `${scaleLevel}%`;
+    const onMouseUp = (upEvt) => {
+      upEvt.preventDefault();
 
-        const consty = cb.consty;
-        consty(scaleLevel);
-      };
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+    };
 
-      const onMouseUp = (upEvt) => {
-        upEvt.preventDefault();
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+  });
+};
 
-        document.removeEventListener('mousemove', onMouseMove);
-        document.removeEventListener('mouseup', onMouseUp);
-      };
-
-      document.addEventListener('mousemove', onMouseMove);
-      document.addEventListener('mouseup', onMouseUp);
-    });
-  };
-
-  window.dnd = {
-    initSlider: initSlider,
-  };
-
-})();
+window.dnd = {
+  initSlider: initSlider,
+};

@@ -1,28 +1,22 @@
-'use strict';
+const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 
-(() => {
+const fileChooser = document.querySelector('.img-upload__start input[type=file]');
+const preview = document.querySelector('.img-upload__preview img');
 
-  const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
+fileChooser.addEventListener('change', () => {
+  const file = fileChooser.files[0];
+  const fileName = file.name.toLowerCase();
 
-  const fileChooser = document.querySelector('.img-upload__start input[type=file]');
-  const preview = document.querySelector('.img-upload__preview img');
+  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
 
-  fileChooser.addEventListener('change', () => {
-    const file = fileChooser.files[0];
-    const fileName = file.name.toLowerCase();
+  if (matches) {
+    const reader = new FileReader();
 
-    const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+    reader.addEventListener('load', () => {
+      preview.src = reader.result;
+      window.form.openEditorPicture();
+    });
 
-    if (matches) {
-      const reader = new FileReader();
-
-      reader.addEventListener('load', () => {
-        preview.src = reader.result;
-        window.form.openEditorPicture();
-      });
-
-      reader.readAsDataURL(file);
-    }
-  });
-
-})();
+    reader.readAsDataURL(file);
+  }
+});

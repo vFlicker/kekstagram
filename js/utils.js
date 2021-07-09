@@ -1,40 +1,34 @@
-'use strict';
+const ESC_KEYCODE = 27;
 
-(() => {
+const shuffle = (array, length) => {
+  const copyArray = array.slice();
 
-  const ESC_KEYCODE = 27;
+  if (copyArray.length < length) {
+    length = copyArray.length;
+  }
 
-  const shuffle = (array, length) => {
-    const copyArray = array.slice();
+  let currentIndex = copyArray.length;
+  let temporaryValue;
+  let randomIndex;
 
-    if (copyArray.length < length) {
-      length = copyArray.length;
-    }
+  // Пока остаются элементы для перетасовки
+  while (currentIndex) {
 
-    let currentIndex = copyArray.length;
-    let temporaryValue;
-    let randomIndex;
+    // Выбирается последний элемент
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
 
-    // Пока остаются элементы для перетасовки
-    while (currentIndex) {
+    // И меняем его с текущим элементом
+    temporaryValue = copyArray[currentIndex];
+    copyArray[currentIndex] = copyArray[randomIndex];
+    copyArray[randomIndex] = temporaryValue;
+  }
 
-      // Выбирается последний элемент
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
+  copyArray.length = length;
+  return copyArray;
+};
 
-      // И меняем его с текущим элементом
-      temporaryValue = copyArray[currentIndex];
-      copyArray[currentIndex] = copyArray[randomIndex];
-      copyArray[randomIndex] = temporaryValue;
-    }
-
-    copyArray.length = length;
-    return copyArray;
-  };
-
-  window.utils = {
-    ESC_KEYCODE: ESC_KEYCODE,
-    getRandomElement: shuffle,
-  };
-
-})();
+window.utils = {
+  ESC_KEYCODE: ESC_KEYCODE,
+  getRandomElement: shuffle,
+};

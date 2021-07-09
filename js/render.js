@@ -1,50 +1,44 @@
-'use strict';
+const pictureTemplate = document.querySelector('#picture');
+const picturesPreviewList = document.querySelector('.pictures');
+let photosData;
 
-(() => {
+const renderBackgroundPhotos = (content) => {
+  const element = pictureTemplate.content.cloneNode(true);
 
-  const pictureTemplate = document.querySelector('#picture');
-  const picturesPreviewList = document.querySelector('.pictures');
-  let photosData;
+  const contentElement = element.querySelector('.picture');
+  contentElement.querySelector('.picture__img').src = content.url;
+  contentElement.querySelector('.picture__likes').textContent = content.likes;
+  contentElement.querySelector('.picture__comments').textContent = content.comments.length;
 
-  const renderBackgroundPhotos = (content) => {
-    const element = pictureTemplate.content.cloneNode(true);
+  return element;
+};
 
-    const contentElement = element.querySelector('.picture');
-    contentElement.querySelector('.picture__img').src = content.url;
-    contentElement.querySelector('.picture__likes').textContent = content.likes;
-    contentElement.querySelector('.picture__comments').textContent = content.comments.length;
+window.render = (data) => {
+  photosData = data;
 
-    return element;
-  };
+  const fragment = document.createDocumentFragment();
+  const pictures = document.querySelectorAll('.picture');
 
-  window.render = (data) => {
-    photosData = data;
+  pictures.forEach((element) => {
+    element.remove();
+  });
 
-    const fragment = document.createDocumentFragment();
-    const pictures = document.querySelectorAll('.picture');
+  data.forEach((element) => {
+    fragment.appendChild(renderBackgroundPhotos(element));
+  });
 
-    pictures.forEach((element) => {
-      element.remove();
-    });
+  picturesPreviewList.appendChild(fragment);
+};
 
-    data.forEach((element) => {
-      fragment.appendChild(renderBackgroundPhotos(element));
-    });
+const picturePreviewHandler = (evt) => {
+  const pictureSrc = evt.target.getAttribute('src');
 
-    picturesPreviewList.appendChild(fragment);
-  };
+  photosData.find((photoData) => {
+    if (photoData.url === pictureSrc) {
+      window.bigPicture.addContent(photoData);
+      window.bigPicture.open();
+    }
+  });
+};
 
-  const picturePreviewHandler = (evt) => {
-    const pictureSrc = evt.target.getAttribute('src');
-
-    photosData.find((photoData) => {
-      if (photoData.url === pictureSrc) {
-        window.bigPicture.addContent(photoData);
-        window.bigPicture.open();
-      }
-    });
-  };
-
-  picturesPreviewList.addEventListener('click', picturePreviewHandler);
-
-})();
+picturesPreviewList.addEventListener('click', picturePreviewHandler);
