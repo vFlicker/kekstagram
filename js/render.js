@@ -2,14 +2,14 @@
 
 (function () {
 
-var pictureTemplate = document.querySelector('#picture');
-  var picturesPreviewList = document.querySelector('.pictures');
-  var photosData;
+const pictureTemplate = document.querySelector('#picture');
+  const picturesPreviewList = document.querySelector('.pictures');
+  let photosData;
 
-  var renderBackgroundPhotos = function (content) {
-    var element = pictureTemplate.content.cloneNode(true);
+  const renderBackgroundPhotos = function (content) {
+    const element = pictureTemplate.content.cloneNode(true);
 
-    var contentElement = element.querySelector('.picture');
+    const contentElement = element.querySelector('.picture');
     contentElement.querySelector('.picture__img').src = content.url;
     contentElement.querySelector('.picture__likes').textContent = content.likes;
     contentElement.querySelector('.picture__comments').textContent = content.comments.length;
@@ -20,8 +20,8 @@ var pictureTemplate = document.querySelector('#picture');
   window.render = function (data) {
     photosData = data;
 
-    var fragment = document.createDocumentFragment();
-    var pictures = document.querySelectorAll('.picture');
+    const fragment = document.createDocumentFragment();
+    const pictures = document.querySelectorAll('.picture');
 
     pictures.forEach(function (element) {
       element.remove();
@@ -34,8 +34,8 @@ var pictureTemplate = document.querySelector('#picture');
     picturesPreviewList.appendChild(fragment);
   };
 
-  var picturePreviewHandler = function (evt) {
-    var pictureSrc = evt.target.getAttribute('src');
+  const picturePreviewHandler = function (evt) {
+    const pictureSrc = evt.target.getAttribute('src');
 
     photosData.find(function (photoData) {
       if (photoData.url === pictureSrc) {

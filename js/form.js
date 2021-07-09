@@ -3,30 +3,30 @@
 (function () {
 
   // Форма редактирование изображение
-  var uploadForm = document.querySelector('.img-upload__form');
-  var uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
-  var buttonUploadOverlayClose = uploadForm.querySelector('.img-upload__cancel');
-  var effectLevel = document.querySelector('.effect-level');
-  var hashtagsInput = uploadForm.querySelector('.text__hashtags');
-  var errorTextInput = uploadForm.querySelector('.input-error__text');
-  var loadedPhoto = document.querySelector('.img-upload__preview img');
-  var uploadedPhoto;
+  const uploadForm = document.querySelector('.img-upload__form');
+  const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
+  const buttonUploadOverlayClose = uploadForm.querySelector('.img-upload__cancel');
+  const effectLevel = document.querySelector('.effect-level');
+  const hashtagsInput = uploadForm.querySelector('.text__hashtags');
+  const errorTextInput = uploadForm.querySelector('.input-error__text');
+  const loadedPhoto = document.querySelector('.img-upload__preview img');
+  let uploadedPhoto;
 
   // Поп-ап
-  var onEditorPictureEscPress = function (evt) {
+  const onEditorPictureEscPress = function (evt) {
     if (evt.keyCode === window.utils.ESC_KEYCODE) {
       closeEditorPicture();
       evt.target.value = '';
     }
   }
 
-  var openEditorPicture = function () {
+  const openEditorPicture = function () {
     uploadOverlay.classList.remove('hidden');
     buttonUploadOverlayClose.addEventListener('click', closeEditorPicture);
     document.addEventListener('keydown', onEditorPictureEscPress);
   }
 
-  var closeEditorPicture = function () {
+  const closeEditorPicture = function () {
     uploadOverlay.classList.add('hidden');
     effectLevel.classList.add('hidden');
     buttonUploadOverlayClose.removeEventListener('click', closeEditorPicture);
@@ -34,12 +34,12 @@
   }
 
   // Изменение размера фото
-  var picturesScaleReduce = uploadForm.querySelector('.scale__control--smaller');
-  var picturesScaleIncrease = uploadForm.querySelector('.scale__control--bigger');
-  var picturesScale = uploadForm.querySelector('.scale__control--value');
-  var picturesScaleValue = Number(picturesScale.value.slice(0, -1));
+  const picturesScaleReduce = uploadForm.querySelector('.scale__control--smaller');
+  const picturesScaleIncrease = uploadForm.querySelector('.scale__control--bigger');
+  const picturesScale = uploadForm.querySelector('.scale__control--value');
+  let picturesScaleValue = Number(picturesScale.value.slice(0, -1));
 
-  var onPicturesScaleReduce = function () {
+  const onPicturesScaleReduce = function () {
     if (picturesScaleValue > 25) {
       picturesScaleValue = picturesScaleValue - 25;
       loadedPhoto.style.width = picturesScaleValue + '%';
@@ -47,7 +47,7 @@
     }
   }
 
-  var onPicturesScaleIncrease = function () {
+  const onPicturesScaleIncrease = function () {
     if (picturesScaleValue < 100) {
       picturesScaleValue = picturesScaleValue + 25;
       loadedPhoto.style.width = picturesScaleValue + '%';
@@ -60,7 +60,7 @@
 
 
   // Наложение маски
-  var effectNames = [
+  const effectNames = [
     'effects__preview--none',
     'effects__preview--chrome',
     'effects__preview--sepia',
@@ -69,7 +69,7 @@
     'effects__preview--heat'
   ];
 
-  var effectsDefStyles = [
+  const effectsDefStyles = [
     'none',
     'grayscale(0.2)',
     'sepia(0.2)',
@@ -79,12 +79,12 @@
   ];
 
   // Интенсивность наложения
-  var changeSaturationEffect = function () {
-    var saturationEffectLine = effectLevel.querySelector('.effect-level__line');
-    var saturationEffectPin = effectLevel.querySelector('.effect-level__pin');
-    var saturationEffectLineDepth = effectLevel.querySelector('.effect-level__depth');
+  const changeSaturationEffect = function () {
+    const saturationEffectLine = effectLevel.querySelector('.effect-level__line');
+    const saturationEffectPin = effectLevel.querySelector('.effect-level__pin');
+    const saturationEffectLineDepth = effectLevel.querySelector('.effect-level__depth');
 
-    var varyEffect = function (sliderValue) {
+    const constyEffect = function (sliderValue) {
 
       // !!!!!!!!!!!!!!!!!!!!!!!
       // !!! Сделать красиво !!!
@@ -124,13 +124,13 @@
       effectLevelLine: saturationEffectLine,
       effectLevelPin: saturationEffectPin,
       effectLevelLineDepth: saturationEffectLineDepth,
-      vary: varyEffect
+      consty: constyEffect
     };
   }
 
-  var maskEffect = function (effectName, effectsDefStyle) {
+  const maskEffect = function (effectName, effectsDefStyle) {
     uploadedPhoto = document.querySelector('.img-upload__preview img');
-    for (var i = 0; i < 6; i++) {
+    for (let i = 0; i < 6; i++) {
       uploadedPhoto.classList.remove(effectNames[i]);
     }
 
@@ -142,14 +142,14 @@
     window.dnd.initSlider(changeSaturationEffect);
   }
 
-  var picturesEffectArray = [...document.querySelectorAll('.effects__radio')];
+  const picturesEffectArray = [...document.querySelectorAll('.effects__radio')];
 
 
   // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   // !!! Попробовать сделать на массивах !!!
   // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-  for (var i = 0; i < picturesEffectArray.length; i++) {
+  for (let i = 0; i < picturesEffectArray.length; i++) {
     picturesEffectArray[i].addEventListener('click', function (evt) {
       switch (evt.currentTarget.value) {
         case 'none':
@@ -198,7 +198,7 @@
     hashtagsInput.addEventListener('input', isValid);
   });
 
-  var checkCharacters = function () {
+  const checkCharacters = function () {
     if (hashtagsInput.validity.tooShort) {
       hashtagsInput.classList.add('input-error');
       errorTextInput.innerHTML = 'Мало букв';
@@ -208,7 +208,7 @@
     return true;
   }
 
-  var checkFieldsPresence = function () {
+  const checkFieldsPresence = function () {
     if (hashtagsInput.validity.valueMissing) {
       hashtagsInput.classList.add('input-error');
       errorTextInput.innerHTML = 'Поле должно быть заполненно';
@@ -218,11 +218,11 @@
     return true;
   }
 
-  var checkPresenceHashtags = function () {
-    var str = hashtagsInput.value.replace(/ +/g, ' ').trim();
-    var wordsArr = str.split(" ");
+  const checkPresenceHashtags = function () {
+    const str = hashtagsInput.value.replace(/ +/g, ' ').trim();
+    const wordsArr = str.split(" ");
 
-    for (var i = 0; i < wordsArr.length; i++) {
+    for (let i = 0; i < wordsArr.length; i++) {
       if (wordsArr[i][0] !== '#') {
         hashtagsInput.classList.add('input-error');
         errorTextInput.innerHTML = 'Хэш-тег должен начинаться со знака &laquo;#&raquo;';
@@ -235,7 +235,7 @@
     return true;
   }
 
-  var isValid = function () {
+  const isValid = function () {
     if (hashtagsInput.validity.valid && checkPresenceHashtags()) {
       hashtagsInput.classList.remove('input-error');
       errorTextInput.innerHTML = '';

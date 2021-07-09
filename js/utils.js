@@ -2,18 +2,18 @@
 
 (function () {
 
-  var ESC_KEYCODE = 27;
+  const ESC_KEYCODE = 27;
 
-  var shuffle = function (array, length) {
-    var copyArray = array.slice();
+  const shuffle = function (array, length) {
+    const copyArray = array.slice();
 
     if (copyArray.length < length) {
       length = copyArray.length;
     }
 
-    var currentIndex = copyArray.length,
-      temporaryValue,
-      randomIndex;
+    let currentIndex = copyArray.length;
+    let temporaryValue;
+    let randomIndex;
 
     // Пока остаются элементы для перетасовки
     while (currentIndex) {
