@@ -1,6 +1,6 @@
 'use strict';
 
-(function () {
+(() => {
 
   const bigPicture = document.querySelector('.big-picture');
   const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
@@ -17,26 +17,26 @@
   hideCommentLoader.classList.add('visually-hidden');
 
   // Показать большое изображение
-  const openBigPicture = function () {
+  const openBigPicture = () => {
     bigPicture.classList.remove('hidden');
     buttonBigPictureClose.addEventListener('click', closeBigPicture);
     document.addEventListener('keydown', onBigPictureEscPress);
   }
 
-  const onBigPictureEscPress = function (evt) {
+  const onBigPictureEscPress = (evt) => {
     if (evt.keyCode === window.utils.ESC_KEYCODE) {
       closeBigPicture();
     }
   }
 
-  const closeBigPicture = function () {
+  const closeBigPicture = () => {
     bigPicture.classList.add('hidden');
     buttonBigPictureClose.removeEventListener('click', closeBigPicture);
     document.removeEventListener('keydown', onBigPictureEscPress);
   }
 
   // Добавить информацию
-  const addContentToBigPicture = function (item) {
+  const addContentToBigPicture = (item) => {
     bigPictureImg.src = item.url;
     bigPictureLikes.textContent = item.likes;
     bigPictureCommentCount.textContent = item.comments.length;

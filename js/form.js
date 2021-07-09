@@ -1,6 +1,6 @@
 'use strict';
 
-(function () {
+(() => {
 
   // Форма редактирование изображение
   const uploadForm = document.querySelector('.img-upload__form');
@@ -13,20 +13,20 @@
   let uploadedPhoto;
 
   // Поп-ап
-  const onEditorPictureEscPress = function (evt) {
+  const onEditorPictureEscPress = (evt) => {
     if (evt.keyCode === window.utils.ESC_KEYCODE) {
       closeEditorPicture();
       evt.target.value = '';
     }
   }
 
-  const openEditorPicture = function () {
+  const openEditorPicture = () => {
     uploadOverlay.classList.remove('hidden');
     buttonUploadOverlayClose.addEventListener('click', closeEditorPicture);
     document.addEventListener('keydown', onEditorPictureEscPress);
   }
 
-  const closeEditorPicture = function () {
+  const closeEditorPicture = () => {
     uploadOverlay.classList.add('hidden');
     effectLevel.classList.add('hidden');
     buttonUploadOverlayClose.removeEventListener('click', closeEditorPicture);
@@ -39,7 +39,7 @@
   const picturesScale = uploadForm.querySelector('.scale__control--value');
   let picturesScaleValue = Number(picturesScale.value.slice(0, -1));
 
-  const onPicturesScaleReduce = function () {
+  const onPicturesScaleReduce = () => {
     if (picturesScaleValue > 25) {
       picturesScaleValue = picturesScaleValue - 25;
       loadedPhoto.style.width = picturesScaleValue + '%';
@@ -47,7 +47,7 @@
     }
   }
 
-  const onPicturesScaleIncrease = function () {
+  const onPicturesScaleIncrease = () => {
     if (picturesScaleValue < 100) {
       picturesScaleValue = picturesScaleValue + 25;
       loadedPhoto.style.width = picturesScaleValue + '%';
@@ -79,12 +79,12 @@
   ];
 
   // Интенсивность наложения
-  const changeSaturationEffect = function () {
+  const changeSaturationEffect = () => {
     const saturationEffectLine = effectLevel.querySelector('.effect-level__line');
     const saturationEffectPin = effectLevel.querySelector('.effect-level__pin');
     const saturationEffectLineDepth = effectLevel.querySelector('.effect-level__depth');
 
-    const constyEffect = function (sliderValue) {
+    const constyEffect = (sliderValue) => {
 
       // !!!!!!!!!!!!!!!!!!!!!!!
       // !!! Сделать красиво !!!
@@ -128,7 +128,7 @@
     };
   }
 
-  const maskEffect = function (effectName, effectsDefStyle) {
+  const maskEffect = (effectName, effectsDefStyle) => {
     uploadedPhoto = document.querySelector('.img-upload__preview img');
     for (let i = 0; i < 6; i++) {
       uploadedPhoto.classList.remove(effectNames[i]);
@@ -150,7 +150,7 @@
   // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
   for (let i = 0; i < picturesEffectArray.length; i++) {
-    picturesEffectArray[i].addEventListener('click', function (evt) {
+    picturesEffectArray[i].addEventListener('click', (evt) => {
       switch (evt.currentTarget.value) {
         case 'none':
           maskEffect(effectNames[0], effectsDefStyles[0])
@@ -176,13 +176,13 @@
 
 
   // Поле ввода
-  uploadForm.addEventListener('submit', function (evt) {
+  uploadForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
     if (!(checkFieldsPresence() && checkCharacters() && checkPresenceHashtags())) {
       return;
     } else {
-      window.backend.save(new FormData(uploadForm), function (response) {
+      window.backend.save(new FormData(uploadForm), (response) => {
 
 
         // Скрыть форму если всё ок
@@ -198,7 +198,7 @@
     hashtagsInput.addEventListener('input', isValid);
   });
 
-  const checkCharacters = function () {
+  const checkCharacters = () => {
     if (hashtagsInput.validity.tooShort) {
       hashtagsInput.classList.add('input-error');
       errorTextInput.innerHTML = 'Мало букв';
@@ -208,7 +208,7 @@
     return true;
   }
 
-  const checkFieldsPresence = function () {
+  const checkFieldsPresence = () => {
     if (hashtagsInput.validity.valueMissing) {
       hashtagsInput.classList.add('input-error');
       errorTextInput.innerHTML = 'Поле должно быть заполненно';
@@ -218,7 +218,7 @@
     return true;
   }
 
-  const checkPresenceHashtags = function () {
+  const checkPresenceHashtags = () => {
     const str = hashtagsInput.value.replace(/ +/g, ' ').trim();
     const wordsArr = str.split(" ");
 
@@ -235,15 +235,15 @@
     return true;
   }
 
-  const isValid = function () {
+  const isValid = () => {
     if (hashtagsInput.validity.valid && checkPresenceHashtags()) {
       hashtagsInput.classList.remove('input-error');
       errorTextInput.innerHTML = '';
     }
   }
 
-  // form.addEventListener('submit', function (evt) {
-  //     window.backend.save(new FormData(form), function(response) {
+  // form.addEventListener('submit', (evt) => {
+  //     window.backend.save(new FormData(form), response) => {
   //         setup.classList.add('hidden');
   //         console.log(response);
   //     }, window.backend.onError);

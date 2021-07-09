@@ -1,12 +1,12 @@
 'use strict';
 
-(function () {
+(() => {
 
 const pictureTemplate = document.querySelector('#picture');
   const picturesPreviewList = document.querySelector('.pictures');
   let photosData;
 
-  const renderBackgroundPhotos = function (content) {
+  const renderBackgroundPhotos = (content) => {
     const element = pictureTemplate.content.cloneNode(true);
 
     const contentElement = element.querySelector('.picture');
@@ -17,27 +17,27 @@ const pictureTemplate = document.querySelector('#picture');
     return element;
   }
 
-  window.render = function (data) {
+  window.render = (data) => {
     photosData = data;
 
     const fragment = document.createDocumentFragment();
     const pictures = document.querySelectorAll('.picture');
 
-    pictures.forEach(function (element) {
+    pictures.forEach((element) => {
       element.remove();
     });
 
-    data.forEach(function (element) {
+    data.forEach((element) => {
       fragment.appendChild(renderBackgroundPhotos(element));
     });
 
     picturesPreviewList.appendChild(fragment);
   };
 
-  const picturePreviewHandler = function (evt) {
+  const picturePreviewHandler = (evt) => {
     const pictureSrc = evt.target.getAttribute('src');
 
-    photosData.find(function (photoData) {
+    photosData.find((photoData) => {
       if (photoData.url === pictureSrc) {
         window.bigPicture.addContent(photoData);
         window.bigPicture.open();

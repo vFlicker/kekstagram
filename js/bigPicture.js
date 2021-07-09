@@ -1,6 +1,6 @@
 'use strict';
 
-(function () {
+(() => {
 
   const bigPicture = document.querySelector('.big-picture');
   const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
@@ -14,25 +14,25 @@
   let clonedComments;
   const COMMENT_COUNTER = 5;
 
-  const onBigPictureEscPress = function (evt) {
+  const onBigPictureEscPress = (evt) => {
     if (evt.keyCode === window.utils.ESC_KEYCODE) {
       closeBigPicture();
     }
   }
 
-  const openBigPicture = function () {
+  const openBigPicture = () => {
     bigPicture.classList.remove('hidden');
     buttonBigPictureClose.addEventListener('click', closeBigPicture);
     document.addEventListener('keydown', onBigPictureEscPress);
   }
 
-  const closeBigPicture = function () {
+  const closeBigPicture = () => {
     bigPicture.classList.add('hidden');
     buttonBigPictureClose.removeEventListener('click', closeBigPicture);
     document.removeEventListener('keydown', onBigPictureEscPress);
   }
 
-  const createComment = function (comentData) {
+  const createComment = (comentData) => {
     const element = document.querySelector('#comment').content.cloneNode(true);
 
     const contentElement = element.querySelector('.social__comment');
@@ -46,19 +46,19 @@
     return element;
   };
 
-  const showCommentCount = function () {
+  const showCommentCount = () => {
     const shownСomments = comments.length - clonedComments.length;
     const totalСomments = comments.length;
     socialCommentCount.textContent = `${shownСomments} из ${totalСomments} комментариев`;
   }
 
-  const addComments = function (array, lastIndex) {
+  const addComments = (array, lastIndex) => {
     const fragment = document.createDocumentFragment();
     const firstIndex = 0;
 
     array
       .splice(firstIndex, lastIndex)
-      .forEach(function (element) {
+      .forEach((element) => {
         fragment.appendChild(createComment(element));
         commentsList.appendChild(fragment);
       });
@@ -73,12 +73,12 @@
     showCommentCount();
   };
 
-  const socialCommentLoaderHandle = function (evt) {
+  const socialCommentLoaderHandle = (evt) => {
     evt.preventDefault();
     addComments(clonedComments, COMMENT_COUNTER);
   }
 
-  const uploadComments = function (amount) {
+  const uploadComments = (amount) => {
     clonedComments = comments.slice();
     commentsList.textContent = '';
 
@@ -86,7 +86,7 @@
     socialCommentLoader.addEventListener('click', socialCommentLoaderHandle);
   };
 
-  const addContentToBigPicture = function (item) {
+  const addContentToBigPicture = (item) => {
     comments = item.comments;
 
     bigPictureImg.src = item.url;

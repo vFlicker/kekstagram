@@ -1,6 +1,6 @@
 'use strict';
 
-(function () {
+(() => {
 
   let photosFormServer;
 
@@ -11,30 +11,30 @@
   const buttonDiscussed = filtersForm.querySelector('#filter-discussed');
   const filters = document.querySelector('.img-filters');
 
-  const photoDiscusseComparator = function (left, right) {
+  const photoDiscusseComparator = (left, right) => {
     return right.comments.length - left.comments.length;
   };
 
-  const changeActiveButton = function (activeButton) {
+  const changeActiveButton = (activeButton) => {
     for (let i = 0; i < buttons.length; i++) {
       buttons[i].classList.remove('img-filters__button--active');
     }
     activeButton.classList.add('img-filters__button--active');
   };
 
-  const buttonPopularNewHandle = function (evt) {
+  const buttonPopularNewHandle = (evt) => {
     evt.preventDefault();
     changeActiveButton(buttonPopular);
     window.render(photosFormServer);
   };
 
-  const buttonNewHandle = function (evt) {
+  const buttonNewHandle = (evt) => {
     evt.preventDefault();
     changeActiveButton(buttonNew);
     window.render(window.utils.getRandomElement(photosFormServer, 10));
   };
 
-  const buttonDiscussedHandle = function (evt) {
+  const buttonDiscussedHandle = (evt) => {
     evt.preventDefault();
     changeActiveButton(buttonDiscussed);
     const photosFormServerCopy = photosFormServer.slice();
@@ -46,7 +46,7 @@
   buttonDiscussed.addEventListener('click', buttonDiscussedHandle);
 
 
-  const onLoad = function (data) {
+  const onLoad = (data) => {
     photosFormServer = data;
     filters.classList.remove('img-filters--inactive');
     window.render(photosFormServer);

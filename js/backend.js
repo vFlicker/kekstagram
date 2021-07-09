@@ -1,27 +1,27 @@
 // Файл load.js
 'use strict';
 
-(function () {
+(() => {
   const URL_LOAD = 'https://22.javascript.pages.academy/kekstagram/data';
   const URL_SAVE = 'https://22.javascript.pages.academy/kekstagram';
   const SUCCESS_CODE = 200;
   const TIMEOUT = 10000;
 
-  const load = function (onLoad, onError) {
+  const load = (onLoad, onError) => {
     const xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
-    xhr.addEventListener('load', function () {
+    xhr.addEventListener('load', () => {
       if (xhr.status === SUCCESS_CODE) {
         onLoad(xhr.response);
       } else {
         onError(`Статус ответа ${xhr.status}: ${xhr.statusText}`);
       }
     })
-    xhr.addEventListener('error', function () {
+    xhr.addEventListener('error', () => {
       onError('Ошибка соединения');
     });
-    xhr.addEventListener('timeout', function () {
+    xhr.addEventListener('timeout', () => {
       onError(`Запрос не успел выполниться за ${xhr.timeout} мс`);
     });
 
@@ -31,21 +31,21 @@
     xhr.send();
   };
 
-  const save = function (data, onLoad, onError) {
+  const save = (data, onLoad, onError) => {
     const xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
-    xhr.addEventListener('load', function () {
+    xhr.addEventListener('load', () => {
       if (xhr.status === SUCCESS_CODE) {
         onLoad(xhr.response);
       } else {
         onError(`Статус ответа ${xhr.status}: ${xhr.statusText}`);
       }
     })
-    xhr.addEventListener('error', function () {
+    xhr.addEventListener('error', () => {
       onError('Ошибка соединения');
     });
-    xhr.addEventListener('timeout', function () {
+    xhr.addEventListener('timeout', () => {
       onError(`Запрос не успел выполниться за ${xhr.timeout} мс`);
     });
 
@@ -55,7 +55,7 @@
     xhr.send();
   };
 
-  const errorHandler = function (errorMessage) {
+  const errorHandler = (errorMessage) => {
     const node = document.createElement('div');
     node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: #ff4d4d;';
     node.style.position = 'absolute';

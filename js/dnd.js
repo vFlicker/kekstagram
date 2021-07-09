@@ -1,8 +1,8 @@
 "use strict";
 
-(function () {
+(() => {
 
-  const initSlider = function (callback) {
+  const initSlider = (callback) => {
     const cb = callback();
 
     const effectLevelLine = cb.effectLevelLine;
@@ -12,12 +12,12 @@
     effectLevelLineDepth.style.width = 20 + '%';
     effectLevelPin.style.left = 20 + '%';
 
-    effectLevelPin.addEventListener('mousedown', function (evt) {
+    effectLevelPin.addEventListener('mousedown', (evt) => {
       evt.preventDefault();
 
       const shift = evt.clientX - effectLevelPin.getBoundingClientRect().left - effectLevelPin.offsetWidth / 2;
 
-      const onMouseMove = function (moveEvt) {
+      const onMouseMove = (moveEvt) => {
         moveEvt.preventDefault();
 
         const maxValue = effectLevelLine.offsetWidth;
@@ -39,7 +39,7 @@
         consty(scaleLevel);
       };
 
-      const onMouseUp = function (upEvt) {
+      const onMouseUp = (upEvt) => {
         upEvt.preventDefault();
 
         document.removeEventListener('mousemove', onMouseMove);

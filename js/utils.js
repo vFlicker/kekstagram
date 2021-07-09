@@ -1,10 +1,10 @@
 'use strict';
 
-(function () {
+(() => {
 
   const ESC_KEYCODE = 27;
 
-  const shuffle = function (array, length) {
+  const shuffle = (array, length) => {
     const copyArray = array.slice();
 
     if (copyArray.length < length) {
