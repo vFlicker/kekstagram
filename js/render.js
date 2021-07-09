@@ -2,49 +2,49 @@
 
 (function () {
 
-    var pictureTemplate = document.querySelector('#picture');
-    var picturesPreviewList = document.querySelector('.pictures');
-    var photosData;
+var pictureTemplate = document.querySelector('#picture');
+  var picturesPreviewList = document.querySelector('.pictures');
+  var photosData;
 
-    var renderBackgroundPhotos = function (content) {
-        var element = pictureTemplate.content.cloneNode(true);
+  var renderBackgroundPhotos = function (content) {
+    var element = pictureTemplate.content.cloneNode(true);
 
-        var contentElement = element.querySelector('.picture');
-        contentElement.querySelector('.picture__img').src = content.url;
-        contentElement.querySelector('.picture__likes').textContent = content.likes;
-        contentElement.querySelector('.picture__comments').textContent = content.comments.length;
-        
-        return element;
-    }
+    var contentElement = element.querySelector('.picture');
+    contentElement.querySelector('.picture__img').src = content.url;
+    contentElement.querySelector('.picture__likes').textContent = content.likes;
+    contentElement.querySelector('.picture__comments').textContent = content.comments.length;
 
-    window.render = function (data) {
-        photosData = data;
-        
-        var fragment = document.createDocumentFragment();
-        var pictures = document.querySelectorAll('.picture');
+    return element;
+  }
 
-        pictures.forEach(function (element) {
-            element.remove();
-        });
+  window.render = function (data) {
+    photosData = data;
 
-        data.forEach(function (element) {
-            fragment.appendChild(renderBackgroundPhotos(element));
-        });
+    var fragment = document.createDocumentFragment();
+    var pictures = document.querySelectorAll('.picture');
 
-        picturesPreviewList.appendChild(fragment);
-    };
+    pictures.forEach(function (element) {
+      element.remove();
+    });
 
-    var picturePreviewHandler = function (evt) {
-        var pictureSrc = evt.target.getAttribute('src');
+    data.forEach(function (element) {
+      fragment.appendChild(renderBackgroundPhotos(element));
+    });
 
-        photosData.find(function (photoData) {
-            if (photoData.url === pictureSrc) {
-                window.bigPicture.addContent(photoData);
-                window.bigPicture.open();
-            }
-        });
-    };
+    picturesPreviewList.appendChild(fragment);
+  };
 
-    picturesPreviewList.addEventListener('click', picturePreviewHandler);
+  var picturePreviewHandler = function (evt) {
+    var pictureSrc = evt.target.getAttribute('src');
+
+    photosData.find(function (photoData) {
+      if (photoData.url === pictureSrc) {
+        window.bigPicture.addContent(photoData);
+        window.bigPicture.open();
+      }
+    });
+  };
+
+  picturesPreviewList.addEventListener('click', picturePreviewHandler);
 
 })();
