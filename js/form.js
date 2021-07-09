@@ -18,20 +18,20 @@
       closeEditorPicture();
       evt.target.value = '';
     }
-  }
+  };
 
   const openEditorPicture = () => {
     uploadOverlay.classList.remove('hidden');
     buttonUploadOverlayClose.addEventListener('click', closeEditorPicture);
     document.addEventListener('keydown', onEditorPictureEscPress);
-  }
+  };
 
   const closeEditorPicture = () => {
     uploadOverlay.classList.add('hidden');
     effectLevel.classList.add('hidden');
     buttonUploadOverlayClose.removeEventListener('click', closeEditorPicture);
     document.removeEventListener('keydown', onEditorPictureEscPress);
-  }
+  };
 
   // Изменение размера фото
   const picturesScaleReduce = uploadForm.querySelector('.scale__control--smaller');
@@ -42,18 +42,18 @@
   const onPicturesScaleReduce = () => {
     if (picturesScaleValue > 25) {
       picturesScaleValue = picturesScaleValue - 25;
-      loadedPhoto.style.width = picturesScaleValue + '%';
-      picturesScale.value = picturesScaleValue + '%';
+      loadedPhoto.style.width = `${picturesScaleValue}%`;
+      picturesScale.value = `${picturesScaleValue}%`;
     }
-  }
+  };
 
   const onPicturesScaleIncrease = () => {
     if (picturesScaleValue < 100) {
       picturesScaleValue = picturesScaleValue + 25;
-      loadedPhoto.style.width = picturesScaleValue + '%';
-      picturesScale.value = picturesScaleValue + '%';
+      loadedPhoto.style.width = `${picturesScaleValue}%`;
+      picturesScale.value = `${picturesScaleValue}%`;
     }
-  }
+  };
 
   picturesScaleReduce.addEventListener('click', onPicturesScaleReduce);
   picturesScaleIncrease.addEventListener('click', onPicturesScaleIncrease);
@@ -66,7 +66,7 @@
     'effects__preview--sepia',
     'effects__preview--marvin',
     'effects__preview--phobos',
-    'effects__preview--heat'
+    'effects__preview--heat',
   ];
 
   const effectsDefStyles = [
@@ -75,7 +75,7 @@
     'sepia(0.2)',
     'invert(20%)',
     'blur(2px)',
-    'brightness(40%)'
+    'brightness(40%)',
   ];
 
   // Интенсивность наложения
@@ -118,15 +118,15 @@
           uploadedPhoto.style.filter = `brightness(${sliderValue * 2}%)`;
         }
       }
-    }
+    };
 
     return {
       effectLevelLine: saturationEffectLine,
       effectLevelPin: saturationEffectPin,
       effectLevelLineDepth: saturationEffectLineDepth,
-      consty: constyEffect
+      consty: constyEffect,
     };
-  }
+  };
 
   const maskEffect = (effectName, effectsDefStyle) => {
     uploadedPhoto = document.querySelector('.img-upload__preview img');
@@ -140,7 +140,7 @@
     !uploadedPhoto.classList.contains(effectNames[0]) ? effectLevel.classList.remove('hidden') : effectLevel.classList.add('hidden');
 
     window.dnd.initSlider(changeSaturationEffect);
-  }
+  };
 
   const picturesEffectArray = [...document.querySelectorAll('.effects__radio')];
 
@@ -153,26 +153,26 @@
     picturesEffectArray[i].addEventListener('click', (evt) => {
       switch (evt.currentTarget.value) {
         case 'none':
-          maskEffect(effectNames[0], effectsDefStyles[0])
+          maskEffect(effectNames[0], effectsDefStyles[0]);
           break;
         case 'chrome':
-          maskEffect(effectNames[1], effectsDefStyles[1])
+          maskEffect(effectNames[1], effectsDefStyles[1]);
           break;
         case 'sepia':
-          maskEffect(effectNames[2], effectsDefStyles[2])
+          maskEffect(effectNames[2], effectsDefStyles[2]);
           break;
         case 'marvin':
           maskEffect(effectNames[3], effectsDefStyles[3]);
           break;
         case 'phobos':
-          maskEffect(effectNames[4], effectsDefStyles[4])
+          maskEffect(effectNames[4], effectsDefStyles[4]);
           break;
         case 'heat':
-          maskEffect(effectNames[5], effectsDefStyles[5])
+          maskEffect(effectNames[5], effectsDefStyles[5]);
           break;
       }
     });
-  };
+  }
 
 
   // Поле ввода
@@ -187,7 +187,6 @@
 
         // Скрыть форму если всё ок
         // Указать URL как в "Код и магия."
-
 
 
         // setup.classList.add('hidden');
@@ -206,7 +205,7 @@
     }
 
     return true;
-  }
+  };
 
   const checkFieldsPresence = () => {
     if (hashtagsInput.validity.valueMissing) {
@@ -216,11 +215,11 @@
     }
 
     return true;
-  }
+  };
 
   const checkPresenceHashtags = () => {
     const str = hashtagsInput.value.replace(/ +/g, ' ').trim();
-    const wordsArr = str.split(" ");
+    const wordsArr = str.split(' ');
 
     for (let i = 0; i < wordsArr.length; i++) {
       if (wordsArr[i][0] !== '#') {
@@ -228,19 +227,19 @@
         errorTextInput.innerHTML = 'Хэш-тег должен начинаться со знака &laquo;#&raquo;';
         return false;
       } else {
-        hashtagsInput.classList.remove("input-error");
+        hashtagsInput.classList.remove('input-error');
       }
     }
 
     return true;
-  }
+  };
 
   const isValid = () => {
     if (hashtagsInput.validity.valid && checkPresenceHashtags()) {
       hashtagsInput.classList.remove('input-error');
       errorTextInput.innerHTML = '';
     }
-  }
+  };
 
   // form.addEventListener('submit', (evt) => {
   //     window.backend.save(new FormData(form), response) => {
@@ -251,9 +250,8 @@
   // });
 
   window.form = {
-    openEditorPicture: openEditorPicture
-  }
-
+    openEditorPicture: openEditorPicture,
+  };
 
 
 })();

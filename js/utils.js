@@ -30,11 +30,11 @@
 
     copyArray.length = length;
     return copyArray;
-  }
+  };
 
   window.utils = {
     ESC_KEYCODE: ESC_KEYCODE,
-    getRandomElement: shuffle
-  }
+    getRandomElement: shuffle,
+  };
 
 })();

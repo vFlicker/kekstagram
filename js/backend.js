@@ -17,7 +17,7 @@
       } else {
         onError(`Статус ответа ${xhr.status}: ${xhr.statusText}`);
       }
-    })
+    });
     xhr.addEventListener('error', () => {
       onError('Ошибка соединения');
     });
@@ -41,7 +41,7 @@
       } else {
         onError(`Статус ответа ${xhr.status}: ${xhr.statusText}`);
       }
-    })
+    });
     xhr.addEventListener('error', () => {
       onError('Ошибка соединения');
     });
@@ -71,7 +71,7 @@
   window.backend = {
     load: load,
     save: save,
-    errorHandler: errorHandler
-  }
+    errorHandler: errorHandler,
+  };
 
 })();

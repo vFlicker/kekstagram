@@ -21,19 +21,19 @@
     bigPicture.classList.remove('hidden');
     buttonBigPictureClose.addEventListener('click', closeBigPicture);
     document.addEventListener('keydown', onBigPictureEscPress);
-  }
+  };
 
   const onBigPictureEscPress = (evt) => {
     if (evt.keyCode === window.utils.ESC_KEYCODE) {
       closeBigPicture();
     }
-  }
+  };
 
   const closeBigPicture = () => {
     bigPicture.classList.add('hidden');
     buttonBigPictureClose.removeEventListener('click', closeBigPicture);
     document.removeEventListener('keydown', onBigPictureEscPress);
-  }
+  };
 
   // Добавить информацию
   const addContentToBigPicture = (item) => {
@@ -44,11 +44,11 @@
     for (let i = 0; i < 2; i++) {
       bigPictureComments[i].textContent = item.comments[i];
     }
-  }
+  };
 
   window.preview = {
     openBigPicture: openBigPicture,
-    addContentToBigPicture: addContentToBigPicture
-  }
+    addContentToBigPicture: addContentToBigPicture,
+  };
 
 })();

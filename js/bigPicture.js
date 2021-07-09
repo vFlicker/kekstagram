@@ -18,19 +18,19 @@
     if (evt.keyCode === window.utils.ESC_KEYCODE) {
       closeBigPicture();
     }
-  }
+  };
 
   const openBigPicture = () => {
     bigPicture.classList.remove('hidden');
     buttonBigPictureClose.addEventListener('click', closeBigPicture);
     document.addEventListener('keydown', onBigPictureEscPress);
-  }
+  };
 
   const closeBigPicture = () => {
     bigPicture.classList.add('hidden');
     buttonBigPictureClose.removeEventListener('click', closeBigPicture);
     document.removeEventListener('keydown', onBigPictureEscPress);
-  }
+  };
 
   const createComment = (comentData) => {
     const element = document.querySelector('#comment').content.cloneNode(true);
@@ -50,7 +50,7 @@
     const shownСomments = comments.length - clonedComments.length;
     const totalСomments = comments.length;
     socialCommentCount.textContent = `${shownСomments} из ${totalСomments} комментариев`;
-  }
+  };
 
   const addComments = (array, lastIndex) => {
     const fragment = document.createDocumentFragment();
@@ -76,7 +76,7 @@
   const socialCommentLoaderHandle = (evt) => {
     evt.preventDefault();
     addComments(clonedComments, COMMENT_COUNTER);
-  }
+  };
 
   const uploadComments = (amount) => {
     clonedComments = comments.slice();
@@ -94,11 +94,11 @@
     bigPictureLikes.textContent = item.likes;
 
     uploadComments(COMMENT_COUNTER);
-  }
+  };
 
   window.bigPicture = {
     open: openBigPicture,
-    addContent: addContentToBigPicture
-  }
+    addContent: addContentToBigPicture,
+  };
 
 })();

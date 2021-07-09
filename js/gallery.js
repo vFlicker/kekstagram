@@ -11,9 +11,7 @@
   const buttonDiscussed = filtersForm.querySelector('#filter-discussed');
   const filters = document.querySelector('.img-filters');
 
-  const photoDiscusseComparator = (left, right) => {
-    return right.comments.length - left.comments.length;
-  };
+  const photoDiscusseComparator = (left, right) => right.comments.length - left.comments.length;
 
   const changeActiveButton = (activeButton) => {
     for (let i = 0; i < buttons.length; i++) {

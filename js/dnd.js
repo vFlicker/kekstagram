@@ -9,8 +9,8 @@
     const effectLevelPin = cb.effectLevelPin;
     const effectLevelLineDepth = cb.effectLevelLineDepth;
 
-    effectLevelLineDepth.style.width = 20 + '%';
-    effectLevelPin.style.left = 20 + '%';
+    effectLevelLineDepth.style.width = `${20}%`;
+    effectLevelPin.style.left = `${20}%`;
 
     effectLevelPin.addEventListener('mousedown', (evt) => {
       evt.preventDefault();
@@ -32,8 +32,8 @@
 
         const scaleLevel = newValue / maxValue * 100;
 
-        effectLevelLineDepth.style.width = scaleLevel + '%';
-        effectLevelPin.style.left = scaleLevel + '%';
+        effectLevelLineDepth.style.width = `${scaleLevel}%`;
+        effectLevelPin.style.left = `${scaleLevel}%`;
 
         const consty = cb.consty;
         consty(scaleLevel);
@@ -44,15 +44,15 @@
 
         document.removeEventListener('mousemove', onMouseMove);
         document.removeEventListener('mouseup', onMouseUp);
-      }
+      };
 
       document.addEventListener('mousemove', onMouseMove);
       document.addEventListener('mouseup', onMouseUp);
     });
-  }
+  };
 
   window.dnd = {
-    initSlider: initSlider
-  }
+    initSlider: initSlider,
+  };
 
 })();

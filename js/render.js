@@ -2,7 +2,7 @@
 
 (() => {
 
-const pictureTemplate = document.querySelector('#picture');
+  const pictureTemplate = document.querySelector('#picture');
   const picturesPreviewList = document.querySelector('.pictures');
   let photosData;
 
@@ -15,7 +15,7 @@ const pictureTemplate = document.querySelector('#picture');
     contentElement.querySelector('.picture__comments').textContent = content.comments.length;
 
     return element;
-  }
+  };
 
   window.render = (data) => {
     photosData = data;
