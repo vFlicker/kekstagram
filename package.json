@@ -4,7 +4,7 @@
   "private": true,
   "description": "Проект «Кекстаграм» от HTML Academy",
   "scripts": {
-    "eslint": "eslint js/**/*.js",
+    "eslint": "eslint --fix js/**/*.js",
     "test": "npm run eslint",
     "start": "browser-sync start --server --no-ui --files \"js/**/*.js\""
   },
