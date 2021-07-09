@@ -2,8 +2,8 @@
 'use strict';
 
 (function () {
-  var URL_LOAD = 'https://javascript.pages.academy/kekstagram/data';
-  var URL_SAVE = 'https://javascript.pages.academy/kekstagram';
+  var URL_LOAD = 'https://22.javascript.pages.academy/kekstagram/data';
+  var URL_SAVE = 'https://22.javascript.pages.academy/kekstagram';
   var SUCCESS_CODE = 200;
   var TIMEOUT = 10000;
 
