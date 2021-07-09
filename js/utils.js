@@ -1,6 +1,8 @@
 const ESC_KEYCODE = 27;
 
-const shuffle = (array, length) => {
+const isEscKeycode = (keycode) => keycode === ESC_KEYCODE;
+
+const getRandomElement = (array, length) => {
   const copyArray = array.slice();
 
   if (copyArray.length < length) {
@@ -28,7 +30,7 @@ const shuffle = (array, length) => {
   return copyArray;
 };
 
-window.utils = {
-  ESC_KEYCODE: ESC_KEYCODE,
-  getRandomElement: shuffle,
+export {
+  isEscKeycode,
+  getRandomElement
 };

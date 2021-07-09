@@ -1,3 +1,7 @@
+import {save, errorHandler} from './backend.js';
+import {initSlider} from './dnd.js';
+import {isEscKeycode} from './utils.js';
+
 // Форма редактирование изображение
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
@@ -10,7 +14,7 @@ let uploadedPhoto;
 
 // Поп-ап
 const onEditorPictureEscPress = (evt) => {
-  if (evt.keyCode === window.utils.ESC_KEYCODE) {
+  if (isEscKeycode(evt.keyCode)) {
     closeEditorPicture();
     evt.target.value = '';
   }
@@ -135,7 +139,7 @@ const maskEffect = (effectName, effectsDefStyle) => {
 
   !uploadedPhoto.classList.contains(effectNames[0]) ? effectLevel.classList.remove('hidden') : effectLevel.classList.add('hidden');
 
-  window.dnd.initSlider(changeSaturationEffect);
+  initSlider(changeSaturationEffect);
 };
 
 const picturesEffectArray = [...document.querySelectorAll('.effects__radio')];
@@ -178,7 +182,7 @@ uploadForm.addEventListener('submit', (evt) => {
   if (!(checkFieldsPresence() && checkCharacters() && checkPresenceHashtags())) {
     return;
   } else {
-    window.backend.save(new FormData(uploadForm), (response) => {
+    save(new FormData(uploadForm), (response) => {
 
 
       // Скрыть форму если всё ок
@@ -187,7 +191,7 @@ uploadForm.addEventListener('submit', (evt) => {
 
       // setup.classList.add('hidden');
       console.log(response);
-    }, window.backend.errorHandler);
+    }, errorHandler);
   }
 
   hashtagsInput.addEventListener('input', isValid);
@@ -238,13 +242,13 @@ const isValid = () => {
 };
 
 // form.addEventListener('submit', (evt) => {
-//     window.backend.save(new FormData(form), response) => {
+//     save(new FormData(form), response) => {
 //         setup.classList.add('hidden');
 //         console.log(response);
-//     }, window.backend.onError);
+//     }, errorHandler);
 //     evt.preventDefault();
 // });
 
-window.form = {
-  openEditorPicture: openEditorPicture,
+export {
+  openEditorPicture
 };

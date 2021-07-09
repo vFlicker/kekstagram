@@ -1,3 +1,5 @@
+import {isEscKeycode} from './utils.js';
+
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
 const bigPictureSocialCaption = bigPicture.querySelector('.social__caption');
@@ -11,7 +13,7 @@ let clonedComments;
 const COMMENT_COUNTER = 5;
 
 const onBigPictureEscPress = (evt) => {
-  if (evt.keyCode === window.utils.ESC_KEYCODE) {
+  if (isEscKeycode(evt.keyCode)) {
     closeBigPicture();
   }
 };
@@ -92,7 +94,7 @@ const addContentToBigPicture = (item) => {
   uploadComments(COMMENT_COUNTER);
 };
 
-window.bigPicture = {
-  open: openBigPicture,
-  addContent: addContentToBigPicture,
+export {
+  openBigPicture,
+  addContentToBigPicture
 };

@@ -1,3 +1,7 @@
+import {load, errorHandler} from './backend.js';
+import {render} from './render.js';
+import {getRandomElement} from './utils.js';
+
 let photosFormServer;
 
 const filtersForm = document.querySelector('.img-filters__form');
@@ -19,20 +23,20 @@ const changeActiveButton = (activeButton) => {
 const buttonPopularNewHandle = (evt) => {
   evt.preventDefault();
   changeActiveButton(buttonPopular);
-  window.render(photosFormServer);
+  render(photosFormServer);
 };
 
 const buttonNewHandle = (evt) => {
   evt.preventDefault();
   changeActiveButton(buttonNew);
-  window.render(window.utils.getRandomElement(photosFormServer, 10));
+  render(getRandomElement(photosFormServer, 10));
 };
 
 const buttonDiscussedHandle = (evt) => {
   evt.preventDefault();
   changeActiveButton(buttonDiscussed);
   const photosFormServerCopy = photosFormServer.slice();
-  window.render(photosFormServerCopy.sort(photoDiscusseComparator));
+  render(photosFormServerCopy.sort(photoDiscusseComparator));
 };
 
 buttonPopular.addEventListener('click', buttonPopularNewHandle);
@@ -43,7 +47,7 @@ buttonDiscussed.addEventListener('click', buttonDiscussedHandle);
 const onLoad = (data) => {
   photosFormServer = data;
   filters.classList.remove('img-filters--inactive');
-  window.render(photosFormServer);
+  render(photosFormServer);
 };
 
-window.backend.load(onLoad, window.backend.errorHandler);
+load(onLoad, errorHandler);

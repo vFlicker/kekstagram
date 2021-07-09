@@ -47,6 +47,6 @@ const initSlider = (callback) => {
   });
 };
 
-window.dnd = {
-  initSlider: initSlider,
+export {
+  initSlider
 };

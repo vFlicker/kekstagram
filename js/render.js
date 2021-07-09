@@ -1,3 +1,5 @@
+import {addContentToBigPicture, openBigPicture} from './bigPicture.js';
+
 const pictureTemplate = document.querySelector('#picture');
 const picturesPreviewList = document.querySelector('.pictures');
 let photosData;
@@ -13,7 +15,7 @@ const renderBackgroundPhotos = (content) => {
   return element;
 };
 
-window.render = (data) => {
+const render = (data) => {
   photosData = data;
 
   const fragment = document.createDocumentFragment();
@@ -35,10 +37,14 @@ const picturePreviewHandler = (evt) => {
 
   photosData.find((photoData) => {
     if (photoData.url === pictureSrc) {
-      window.bigPicture.addContent(photoData);
-      window.bigPicture.open();
+      addContentToBigPicture(photoData);
+      openBigPicture();
     }
   });
 };
 
 picturesPreviewList.addEventListener('click', picturePreviewHandler);
+
+export {
+  render
+};

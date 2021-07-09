@@ -1,3 +1,5 @@
+import {openEditorPicture} from './form.js';
+
 const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 
 const fileChooser = document.querySelector('.img-upload__start input[type=file]');
@@ -14,7 +16,7 @@ fileChooser.addEventListener('change', () => {
 
     reader.addEventListener('load', () => {
       preview.src = reader.result;
-      window.form.openEditorPicture();
+      openEditorPicture();
     });
 
     reader.readAsDataURL(file);

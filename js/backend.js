@@ -64,8 +64,8 @@ const errorHandler = (errorMessage) => {
   document.body.insertAdjacentElement('afterbegin', node);
 };
 
-window.backend = {
-  load: load,
-  save: save,
-  errorHandler: errorHandler,
+export {
+  load,
+  save,
+  errorHandler
 };
