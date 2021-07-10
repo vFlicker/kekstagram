@@ -1,36 +1,28 @@
 const ESC_KEYCODE = 27;
 
-const isEscEvent = (keycode) => keycode === ESC_KEYCODE;
+const getRandomInteger = (min = 0, max = 1) => {
+  const lower = Math.ceil(Math.min(min, max));
+  const upper = Math.floor(Math.max(min, max));
 
-const getRandomElement = (array, length) => {
-  const copyArray = array.slice();
-
-  if (copyArray.length < length) {
-    length = copyArray.length;
-  }
-
-  let currentIndex = copyArray.length;
-  let temporaryValue;
-  let randomIndex;
-
-  // Пока остаются элементы для перетасовки
-  while (currentIndex) {
-
-    // Выбирается последний элемент
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    // И меняем его с текущим элементом
-    temporaryValue = copyArray[currentIndex];
-    copyArray[currentIndex] = copyArray[randomIndex];
-    copyArray[randomIndex] = temporaryValue;
-  }
-
-  copyArray.length = length;
-  return copyArray;
+  return Math.floor(lower + Math.random() * (upper - lower + 1));
 };
 
-export {
-  isEscEvent,
-  getRandomElement
+export const getRandomElement = (items) => {
+  const shuffledItems = [...items];
+
+  for (let index = shuffledItems.length - 1; index > 0; index--) {
+    const randomIndex = getRandomInteger(0, index);
+    const swap = shuffledItems[index];
+    shuffledItems[index] = shuffledItems[randomIndex];
+    shuffledItems[randomIndex] = swap;
+  }
+
+  return shuffledItems;
 };
+
+export const getRandomValueFromArray = (array) => {
+  const randomIndex = getRandomInteger(0, array.length - 1);
+  return array[randomIndex];
+};
+
+export const isEscEvent = (keycode) => keycode === ESC_KEYCODE;
