@@ -1,8 +1,8 @@
 import './backend.js';
-import './utils.js';
+import './util.js';
 import './gallery.js';
-import './loadPhoto.js';
-import './bigPicture.js';
+import './load-photo.js';
+import './big-picture.js';
 import './dnd.js';
-import './render.js';
+import './render-pictures.js';
 import './form.js';

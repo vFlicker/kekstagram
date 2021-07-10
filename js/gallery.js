@@ -1,6 +1,6 @@
 import {load, errorHandler} from './backend.js';
-import {render} from './render.js';
-import {getRandomElement} from './utils.js';
+import {renderPictures} from './render-pictures.js';
+import {getRandomElement} from './util.js';
 
 let photosFormServer;
 
@@ -23,20 +23,20 @@ const changeActiveButton = (activeButton) => {
 const buttonPopularNewHandle = (evt) => {
   evt.preventDefault();
   changeActiveButton(buttonPopular);
-  render(photosFormServer);
+  renderPictures(photosFormServer);
 };
 
 const buttonNewHandle = (evt) => {
   evt.preventDefault();
   changeActiveButton(buttonNew);
-  render(getRandomElement(photosFormServer, 10));
+  renderPictures(getRandomElement(photosFormServer, 10));
 };
 
 const buttonDiscussedHandle = (evt) => {
   evt.preventDefault();
   changeActiveButton(buttonDiscussed);
   const photosFormServerCopy = photosFormServer.slice();
-  render(photosFormServerCopy.sort(photoDiscusseComparator));
+  renderPictures(photosFormServerCopy.sort(photoDiscusseComparator));
 };
 
 buttonPopular.addEventListener('click', buttonPopularNewHandle);
@@ -47,7 +47,7 @@ buttonDiscussed.addEventListener('click', buttonDiscussedHandle);
 const onLoad = (data) => {
   photosFormServer = data;
   filters.classList.remove('img-filters--inactive');
-  render(photosFormServer);
+  renderPictures(photosFormServer);
 };
 
 load(onLoad, errorHandler);

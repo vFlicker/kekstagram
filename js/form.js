@@ -1,6 +1,6 @@
 import {save, errorHandler} from './backend.js';
 import {initSlider} from './dnd.js';
-import {isEscKeycode} from './utils.js';
+import {isEscEvent} from './util.js';
 
 // Форма редактирование изображение
 const uploadForm = document.querySelector('.img-upload__form');
@@ -14,7 +14,7 @@ let uploadedPhoto;
 
 // Поп-ап
 const onEditorPictureEscPress = (evt) => {
-  if (isEscKeycode(evt.keyCode)) {
+  if (isEscEvent(evt.keyCode)) {
     closeEditorPicture();
     evt.target.value = '';
   }

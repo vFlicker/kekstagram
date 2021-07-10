@@ -1,4 +1,4 @@
-import {isEscKeycode} from './utils.js';
+import {isEscEvent} from './util.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
@@ -13,7 +13,7 @@ let clonedComments;
 const COMMENT_COUNTER = 5;
 
 const onBigPictureEscPress = (evt) => {
-  if (isEscKeycode(evt.keyCode)) {
+  if (isEscEvent(evt.keyCode)) {
     closeBigPicture();
   }
 };

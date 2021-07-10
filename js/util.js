@@ -1,6 +1,6 @@
 const ESC_KEYCODE = 27;
 
-const isEscKeycode = (keycode) => keycode === ESC_KEYCODE;
+const isEscEvent = (keycode) => keycode === ESC_KEYCODE;
 
 const getRandomElement = (array, length) => {
   const copyArray = array.slice();
@@ -31,6 +31,6 @@ const getRandomElement = (array, length) => {
 };
 
 export {
-  isEscKeycode,
+  isEscEvent,
   getRandomElement
 };

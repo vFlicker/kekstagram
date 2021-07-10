@@ -1,4 +1,4 @@
-import {addContentToBigPicture, openBigPicture} from './bigPicture.js';
+import {addContentToBigPicture, openBigPicture} from './big-picture.js';
 
 const pictureTemplate = document.querySelector('#picture');
 const picturesPreviewList = document.querySelector('.pictures');
@@ -15,7 +15,7 @@ const renderBackgroundPhotos = (content) => {
   return element;
 };
 
-const render = (data) => {
+const renderPictures = (data) => {
   photosData = data;
 
   const fragment = document.createDocumentFragment();
@@ -46,5 +46,5 @@ const picturePreviewHandler = (evt) => {
 picturesPreviewList.addEventListener('click', picturePreviewHandler);
 
 export {
-  render
+  renderPictures
 };
