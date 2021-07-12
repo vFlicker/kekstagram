@@ -6,34 +6,7 @@ const uploadForm = document.querySelector('.img-upload__form');
 const effectLevel = document.querySelector('.effect-level');
 const hashtagsInput = uploadForm.querySelector('.text__hashtags');
 const errorTextInput = uploadForm.querySelector('.input-error__text');
-const loadedPhoto = document.querySelector('.img-upload__preview img');
 let uploadedPhoto;
-
-// Изменение размера фото
-const picturesScaleReduce = uploadForm.querySelector('.scale__control--smaller');
-const picturesScaleIncrease = uploadForm.querySelector('.scale__control--bigger');
-const picturesScale = uploadForm.querySelector('.scale__control--value');
-let picturesScaleValue = Number(picturesScale.value.slice(0, -1));
-
-const onPicturesScaleReduce = () => {
-  if (picturesScaleValue > 25) {
-    picturesScaleValue = picturesScaleValue - 25;
-    loadedPhoto.style.width = `${picturesScaleValue}%`;
-    picturesScale.value = `${picturesScaleValue}%`;
-  }
-};
-
-const onPicturesScaleIncrease = () => {
-  if (picturesScaleValue < 100) {
-    picturesScaleValue = picturesScaleValue + 25;
-    loadedPhoto.style.width = `${picturesScaleValue}%`;
-    picturesScale.value = `${picturesScaleValue}%`;
-  }
-};
-
-picturesScaleReduce.addEventListener('click', onPicturesScaleReduce);
-picturesScaleIncrease.addEventListener('click', onPicturesScaleIncrease);
-
 
 // Наложение маски
 const effectNames = [

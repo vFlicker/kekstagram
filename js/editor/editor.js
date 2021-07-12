@@ -1,6 +1,8 @@
 import {isEscEvent} from '../utils/common.js';
 import {DOM} from '../utils/DOM.js';
 
+import './zoom.js';
+
 const formElement = document.querySelector('.img-upload__form');
 const editorElement = formElement.querySelector('.img-upload__overlay');
 const closeButtonElement = formElement.querySelector('.img-upload__cancel');
