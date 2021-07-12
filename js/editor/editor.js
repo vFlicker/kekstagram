@@ -2,6 +2,7 @@ import {isEscEvent} from '../utils/common.js';
 import {DOM} from '../utils/DOM.js';
 
 import './zoom.js';
+import './slider.js';
 
 const formElement = document.querySelector('.img-upload__form');
 const editorElement = formElement.querySelector('.img-upload__overlay');

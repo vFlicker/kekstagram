@@ -1,7 +1,7 @@
 /* Общие стили. Каркас
-   ========================================================================== */
+  ========================================================================== */
 
-@font-face {
+  @font-face {
   font-family: "Open Sans";
   src: url("../fonts/OpenSansCondensed-Bold.woff2") format("woff2"),
       url("../fonts/OpenSansCondensed-Bold.woff") format("woff");
@@ -85,8 +85,8 @@ main {
 
 
 /**
- * Кнопка закрытия модального окна
- */
+  * Кнопка закрытия модального окна
+  */
 
 .cancel {
   display: block;
@@ -123,8 +123,8 @@ main {
 
 
 /**
- * Оверлей под экранами
- */
+  * Оверлей под экранами
+  */
 
 .overlay {
   position: fixed;
@@ -145,7 +145,7 @@ main {
 
 
 /* Блок с фильтрами изображений других пользователей
-   ========================================================================== */
+    ========================================================================== */
 
 .img-filters {
   padding: 20px 0;
@@ -155,8 +155,8 @@ main {
   display: flex;
 
   -webkit-box-pack: center;
-     -ms-flex-pack: center;
-   justify-content: center;
+      -ms-flex-pack: center;
+    justify-content: center;
 }
 
 .img-filters--inactive {
@@ -210,7 +210,7 @@ main {
 
 
 /* Блок, в котором размещаются фотографии других пользователей
-   ========================================================================== */
+    ========================================================================== */
 
 .pictures {
   display: -ms-grid;
@@ -297,7 +297,7 @@ main {
 
 
 /* Поле для загрузки нового изображения
-   ========================================================================== */
+    ========================================================================== */
 
 .img-upload {
   -ms-grid-column: 3;
@@ -311,6 +311,7 @@ main {
 
 .img-upload__wrapper {
   margin: 0 auto;
+  padding-bottom: 60px;
   width: 582px;
 
   text-align: center;
@@ -340,8 +341,6 @@ main {
   background-position: center;
 
   border: none;
-
-  --grid-sides: 16px;
 }
 
 .img-upload__label {
@@ -396,7 +395,7 @@ main {
 
 
 /* Окно для редактирования изображения
-   ========================================================================== */
+    ========================================================================== */
 
 .img-upload__overlay {
   position: fixed;
@@ -411,7 +410,6 @@ main {
   height: 100%;
 
   padding-top: 60px;
-  padding-bottom: 60px;
   overflow: auto;
 
   background-color: rgba(0, 0, 0, 0.8);
@@ -424,8 +422,8 @@ main {
 
 
 /**
- * Кнопки изменения масштаба изобраения
- */
+  * Кнопки изменения масштаба изобраения
+  */
 
 .img-upload__scale {
   position: absolute;
@@ -525,19 +523,19 @@ main {
 
 
 /**
- * Превью изображения
- */
+  * Превью изображения
+  */
 
 .img-upload__preview {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-     -ms-flex-align: center;
+      -ms-flex-align: center;
         align-items: center;
   -webkit-box-pack: center;
-     -ms-flex-pack: center;
-   justify-content: center;
+      -ms-flex-pack: center;
+    justify-content: center;
 
   width: 600px;
   height: 600px;
@@ -553,85 +551,52 @@ main {
 
 
 /**
- * Шкала регулирования глубины фильтра
- */
+  * Шкала регулирования глубины фильтра
+  */
 
 .effect-level {
   position: absolute;
-  bottom: 10px;
+  bottom: 9px;
   left: 50%;
 
+  padding: 7px 11px 0;
+
   width: 495px;
-  height: 33px;
+  height: 34px;
 
   font-size: 12px;
-  line-height: 42px;
   text-align: center;
   color: #ffffff;
   white-space: nowrap;
 
   background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 33px;
+  border-radius: 34px;
 
   -webkit-transform: translateX(-50%);
       -ms-transform: translateX(-50%);
           transform: translateX(-50%);
+}
+
+.effect-level .noUi-target {
+  border-radius: 16px;
+}
+
+.effect-level .noUi-connects {
+  border-radius: 13px;
+}
+
+.effect-level .noUi-connect {
+  background: #ffe753;
 }
 
 .effect-level__value {
   display: none;
 }
 
-.effect-level__line {
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  left: 20px;
-
-  height: 5px;
-
-  font-size: 0;
-
-  background-color: rgba(255, 231, 81, 0.4);
-
-  -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-          transform: translateY(-50%);
-}
-
-.effect-level__pin {
-  position: absolute;
-  top: 50%;
-  left: 20%;
-  z-index: 1;
-
-  width: 18px;
-  height: 18px;
-  margin: -9px 0 0;
-
-  background-color: #ffe753;
-  border-radius: 50%;
-
-  -webkit-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
-          transform: translateX(-50%);
-
-  cursor: move;
-}
-
-.effect-level__depth {
-  position: absolute;
-
-  width: 20%;
-  height: 100%;
-
-  background-color: #ffe753;
-}
-
 
 /**
- * Блок с эффектами, которые можно применить к изображению
- */
+  * Блок с эффектами, которые можно применить к изображению
+  */
 
 .effects {
   margin: 0;
@@ -649,8 +614,8 @@ main {
   display: flex;
 
   -webkit-box-pack: center;
-     -ms-flex-pack: center;
-   justify-content: center;
+      -ms-flex-pack: center;
+    justify-content: center;
 
   list-style: none;
   text-align: center;
@@ -721,8 +686,8 @@ main {
 }
 
 .effects__preview--phobos {
-  -webkit-filter: blur(5px);
-          filter: blur(5px);
+  -webkit-filter: blur(3px);
+          filter: blur(3px);
 }
 
 .effects__preview--heat {
@@ -732,8 +697,8 @@ main {
 
 
 /**
- * Блок добавления хэштегов и комментария к изображению
- */
+  * Блок добавления хэштегов и комментария к изображению
+  */
 
 .text {
   margin: 0;
@@ -774,8 +739,8 @@ main {
 
 
 /**
- * Кнопка для отправки изображения
- */
+  * Кнопка для отправки изображения
+  */
 
 .img-upload__submit {
   padding: 10px 20px;
@@ -810,8 +775,8 @@ main {
 
 
 /*
- * Кнопка для закрытия окна редактирования изображения
- */
+  * Кнопка для закрытия окна редактирования изображения
+  */
 
 .img-upload__cancel {
   position: absolute;
@@ -827,7 +792,7 @@ main {
 
 
 /* Окно полноэкранного просмотра изображения
-   ========================================================================== */
+    ========================================================================== */
 
 .big-picture__preview {
   position: absolute;
@@ -855,8 +820,8 @@ main {
 
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-     -ms-flex-direction: column;
-         flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
 
   max-width: 600px;
 
@@ -870,8 +835,8 @@ main {
 
 
 /*
- * Подпись к изображению
- */
+  * Подпись к изображению
+  */
 
 .social__header {
   padding: 15px 15px;
@@ -881,12 +846,12 @@ main {
   display: flex;
 
   -webkit-box-pack: start;
-     -ms-flex-pack: start;
-   justify-content: flex-start;
+      -ms-flex-pack: start;
+    justify-content: flex-start;
 
-  -webkit-box-align: flex-start;
-     -ms-flex-align: flex-start;
-        align-items: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+        align-items: center;
 
   border-bottom: 1px solid #cccccc;
 }
@@ -952,12 +917,12 @@ main {
 
 
 /*
- * Комментарии к изображению
- */
+  * Комментарии к изображению
+  */
 
 .social__comments {
   -ms-flex-preferred-size: 100%;
-               flex-basis: 100%;
+                flex-basis: 100%;
 
   list-style: none;
 
@@ -976,7 +941,7 @@ main {
   display: flex;
 
   -webkit-box-align: center;
-     -ms-flex-align: center;
+      -ms-flex-align: center;
         align-items: center;
 }
 
@@ -1012,8 +977,8 @@ main {
 
 
 /**
- * Спиннер загрузки комментариев и его анимация
- */
+  * Спиннер загрузки комментариев и его анимация
+  */
 
 .spinner::after,
 .comments-loader:active::after {
@@ -1063,8 +1028,8 @@ main {
 
 
 /*
- * Форма для отправки комментария
- */
+  * Форма для отправки комментария
+  */
 
 .social__footer {
   border-top: 1px solid #cccccc;
@@ -1136,11 +1101,10 @@ main {
 
 
 /* Подвал сайта
-   ========================================================================== */
+    ========================================================================== */
 
 .page-footer {
   margin-top: 30px;
-  margin-bottom: 30px;
   padding-top: 30px;
   border-top: solid 1px #cccccc;
 }
@@ -1151,18 +1115,18 @@ main {
   display: flex;
 
   -webkit-box-align: start;
-     -ms-flex-align: start;
+      -ms-flex-align: start;
         align-items: flex-start;
 
   -webkit-box-pack: justify;
-     -ms-flex-pack: justify;
-   justify-content: space-between;
+      -ms-flex-pack: justify;
+    justify-content: space-between;
 }
 
 
 /*
- * Копирайт Академии
- */
+  * Копирайт Академии
+  */
 
 .copyright {
   font-size: 12px;
@@ -1188,8 +1152,8 @@ main {
 
 
 /*
- * Ссылки на социальные сети
- */
+  * Ссылки на социальные сети
+  */
 
 .contacts {
   margin: 0;
@@ -1240,7 +1204,7 @@ main {
 
 
 /* Экраны с сообщениями для пользователя
-   ========================================================================== */
+    ========================================================================== */
 
 .img-upload__message {
   position: absolute;
@@ -1265,8 +1229,8 @@ main {
 
 
 /**
- * Экраны ошибки и успеха загрузки изображения
- */
+  * Экраны ошибки и успеха загрузки изображения
+  */
 
 .error,
 .success {
@@ -1357,10 +1321,6 @@ main {
   border-radius: 5px;
 }
 
-.error__button:first-child {
-  margin-right: 30px;
-}
-
 .error__button:hover,
 .error__button:focus,
 .success__button:hover,
@@ -1375,8 +1335,8 @@ main {
 
 
 /**
- * Экран загрузки изображения
- */
+  * Экран загрузки изображения
+  */
 
 .img-upload__message--loading::before {
   content: "";
@@ -1412,7 +1372,13 @@ main {
 
 
 /* Адаптивности чуток
-   ========================================================================== */
+    ========================================================================== */
+
+@media (min-width: 1024px) {
+  .img-upload__wrapper {
+    padding-bottom: 0;
+  }
+}
 
 @media (min-width: 1024px) and (max-width: 1359px) {
   .container {
@@ -1454,41 +1420,4 @@ main {
     -ms-grid-row-span: 3;
     grid-row: 1 / span 3;
   }
-}
-
-.text__wrapper {
-  position: relative;
-}
-
-.input-error {
-  padding-top: 20px;
-  outline-color: tomato;
-  -webkit-transition: .3s;
-  transition: .3s;
-}
-
-.input-error__text {
-  width: 448px;
-  margin: 0 auto;
-  padding: 0 12px;
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  margin-left: -224px;
-  color: #fff;
-  font-size: 13px;
-  line-height: 1.444444;
-  text-transform: initial;
-  background: #f45a57;
-  -webkit-transition: .3s;
-  transition: .3s;
-  border-radius: 4px 4px 0 0;
-  visibility: hidden;
-  opacity: 0;
-}
-
-.input-error + .input-error__text {
-  top: 0;
-  visibility: initial;
-  opacity: 1;
 }
