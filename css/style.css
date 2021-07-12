@@ -37,6 +37,11 @@ body {
   background-color: #232321;
 }
 
+body.scroll-lock {
+  position: fixed;
+  overflow-y: auto;
+}
+
 main {
   position: relative;
 }
