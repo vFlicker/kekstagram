@@ -1,4 +1,5 @@
-import {isEscEvent, hideElement, showElement} from './util.js';
+import {isEscEvent} from './utils/common.js';
+import {DOM} from './utils/DOM.js';
 
 const COMMENT_COUNT_PER_STEP = 5;
 let renderedComentCount = COMMENT_COUNT_PER_STEP;
@@ -21,8 +22,8 @@ const escPressHandler = (evt) => {
 };
 
 const closeButtonClickHandler = () => {
-  bodyElement.classList.remove('scroll-lock');
-  hideElement(pictureSectionElement);
+  DOM.unlockScroll();
+  DOM.hideElement(pictureSectionElement);
   closeButtonElement.removeEventListener('click', closeButtonClickHandler);
   document.removeEventListener('keydown', escPressHandler);
 };
@@ -38,16 +39,15 @@ const loadMoreButtonClickHandler = (evt) => {
   renderedComentCount = renderTo;
 
   if (commentCount <= renderedComentCount) {
-    removeloadMoreButton(); // eslint-disable-line no-use-before-define
+    removeLoadMoreButton(); // eslint-disable-line no-use-before-define
   }
 
   updateCommentCounter(); // eslint-disable-line no-use-before-define
 };
 
-
 const openBigPicture = () => {
-  bodyElement.classList.add('scroll-lock');
-  showElement(pictureSectionElement);
+  DOM.lockScroll();
+  DOM.showElement(pictureSectionElement);
   closeButtonElement.addEventListener('click', closeButtonClickHandler);
   document.addEventListener('keydown', escPressHandler);
 };
@@ -85,8 +85,8 @@ const updateCommentCounter = () => {
   commentCounterElement.textContent = `${renderedComentCount} из ${totalСomments} комментариев`;
 };
 
-const removeloadMoreButton = () => {
-  hideElement(loadMoreButtonElement);
+const removeLoadMoreButton = () => {
+  DOM.hideElement(loadMoreButtonElement);
   loadMoreButtonElement.removeEventListener('click', loadMoreButtonClickHandler);
 };
 
@@ -99,11 +99,11 @@ const addComments = () => {
 
   if (commentCount > COMMENT_COUNT_PER_STEP) {
     renderedComentCount = COMMENT_COUNT_PER_STEP;
-    showElement(loadMoreButtonElement);
+    DOM.showElement(loadMoreButtonElement);
     loadMoreButtonElement.addEventListener('click', loadMoreButtonClickHandler);
   } else {
     renderedComentCount = commentCount;
-    removeloadMoreButton();
+    removeLoadMoreButton();
   }
 
   updateCommentCounter();

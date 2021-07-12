@@ -26,7 +26,3 @@ export const getRandomValueFromArray = (array) => {
 };
 
 export const isEscEvent = (keycode) => keycode === ESC_KEYCODE;
-
-export const hideElement = (element) => element.classList.add('hidden');
-
-export const showElement = (element) => element.classList.remove('hidden');

@@ -1,6 +1,6 @@
 import {load, errorHandler} from './backend.js';
 import {renderPictures} from './render-pictures.js';
-import {getRandomElement} from './util.js';
+import {getRandomElement} from './utils/common.js';
 
 let photosFormServer;
 
