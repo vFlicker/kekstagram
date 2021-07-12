@@ -1,4 +1,4 @@
-import {openEditorPicture} from './form.js';
+import {openEditorPicture} from './editor.js';
 
 const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 
