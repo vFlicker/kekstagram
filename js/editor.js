@@ -1,37 +1,13 @@
 import {save, errorHandler} from './backend.js';
 import {initSlider} from './dnd.js';
-import {isEscEvent} from './util.js';
 
 // Форма редактирование изображение
 const uploadForm = document.querySelector('.img-upload__form');
-const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
-const buttonUploadOverlayClose = uploadForm.querySelector('.img-upload__cancel');
 const effectLevel = document.querySelector('.effect-level');
 const hashtagsInput = uploadForm.querySelector('.text__hashtags');
 const errorTextInput = uploadForm.querySelector('.input-error__text');
 const loadedPhoto = document.querySelector('.img-upload__preview img');
 let uploadedPhoto;
-
-// Поп-ап
-const onEditorPictureEscPress = (evt) => {
-  if (isEscEvent(evt.keyCode)) {
-    closeEditorPicture();
-    evt.target.value = '';
-  }
-};
-
-const openEditorPicture = () => {
-  uploadOverlay.classList.remove('hidden');
-  buttonUploadOverlayClose.addEventListener('click', closeEditorPicture);
-  document.addEventListener('keydown', onEditorPictureEscPress);
-};
-
-const closeEditorPicture = () => {
-  uploadOverlay.classList.add('hidden');
-  effectLevel.classList.add('hidden');
-  buttonUploadOverlayClose.removeEventListener('click', closeEditorPicture);
-  document.removeEventListener('keydown', onEditorPictureEscPress);
-};
 
 // Изменение размера фото
 const picturesScaleReduce = uploadForm.querySelector('.scale__control--smaller');
@@ -248,7 +224,3 @@ const isValid = () => {
 //     }, errorHandler);
 //     evt.preventDefault();
 // });
-
-export {
-  openEditorPicture
-};

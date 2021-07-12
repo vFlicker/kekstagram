@@ -1,4 +1,4 @@
-import {openEditorPicture} from './editor.js';
+import {openEditor} from './editor/editor.js';
 
 const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 
@@ -16,7 +16,7 @@ fileChooser.addEventListener('change', () => {
 
     reader.addEventListener('load', () => {
       preview.src = reader.result;
-      openEditorPicture();
+      openEditor();
     });
 
     reader.readAsDataURL(file);
