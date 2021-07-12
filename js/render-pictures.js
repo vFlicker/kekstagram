@@ -1,50 +1,30 @@
-import {addContentToBigPicture, openBigPicture} from './big-picture.js';
+import {addContentToBigPicture} from './big-picture.js';
 
-const pictureTemplate = document.querySelector('#picture');
-const picturesPreviewList = document.querySelector('.pictures');
-let photosData;
+const pictureTemplate = document.querySelector('#picture')
+  .content
+  .querySelector('.picture');
 
-const renderBackgroundPhotos = (content) => {
-  const element = pictureTemplate.content.cloneNode(true);
-
-  const contentElement = element.querySelector('.picture');
-  contentElement.querySelector('.picture__img').src = content.url;
-  contentElement.querySelector('.picture__likes').textContent = content.likes;
-  contentElement.querySelector('.picture__comments').textContent = content.comments.length;
-
-  return element;
+const pictureClickHandler = (picture) => {
+  addContentToBigPicture(picture);
 };
 
-const renderPictures = (data) => {
-  photosData = data;
+const createPicture = (picture) => {
+  const pictureElement = pictureTemplate.cloneNode(true);
 
-  const fragment = document.createDocumentFragment();
-  const pictures = document.querySelectorAll('.picture');
+  pictureElement.querySelector('.picture__img').src = picture.url;
+  pictureElement.querySelector('.picture__likes').textContent = picture.likes;
+  pictureElement.querySelector('.picture__comments').textContent = picture.comments.length;
 
-  pictures.forEach((element) => {
-    element.remove();
-  });
+  pictureElement.addEventListener('click', pictureClickHandler.bind(null, picture));
 
-  data.forEach((element) => {
-    fragment.appendChild(renderBackgroundPhotos(element));
-  });
-
-  picturesPreviewList.appendChild(fragment);
+  return pictureElement;
 };
 
-const picturePreviewHandler = (evt) => {
-  const pictureSrc = evt.target.getAttribute('src');
+export const renderPictures = (pictures) => {
+  const pictureListFragment = document.createDocumentFragment();
+  const pictureListElement = document.querySelector('.pictures');
 
-  photosData.find((photoData) => {
-    if (photoData.url === pictureSrc) {
-      addContentToBigPicture(photoData);
-      openBigPicture();
-    }
-  });
-};
+  pictures.forEach((picture) => pictureListFragment.appendChild(createPicture(picture)));
 
-picturesPreviewList.addEventListener('click', picturePreviewHandler);
-
-export {
-  renderPictures
+  pictureListElement.appendChild(pictureListFragment);
 };
