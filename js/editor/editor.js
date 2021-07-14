@@ -3,6 +3,7 @@ import {DOM} from '../utils/DOM.js';
 
 import './zoom.js';
 import './slider.js';
+import './validation.js';
 
 const formElement = document.querySelector('.img-upload__form');
 const editorElement = formElement.querySelector('.img-upload__overlay');
@@ -15,6 +16,25 @@ const escPressHandler = (evt) => {
 };
 
 const closeButtonClickHandler = () => {
+  hideEditor(); // eslint-disable-line no-use-before-define
+};
+
+
+const formSubmitHandler = (evt) => {
+  evt.preventDefault();
+
+  hideEditor(); // eslint-disable-line no-use-before-define
+
+  // save(new FormData(formElement), (response) => {
+  //   // Скрыть форму если всё ок
+  //   // Указать URL как в "Код и магия."
+
+  //   // hideEditor();
+  //   console.log(response);
+  // }, errorHandler);
+};
+
+const hideEditor = () => {
   DOM.unlockScroll();
   DOM.hideElement(editorElement);
   closeButtonElement.removeEventListener('click', closeButtonClickHandler);
@@ -27,6 +47,8 @@ const openEditor = () => {
   closeButtonElement.addEventListener('click', closeButtonClickHandler);
   document.addEventListener('keydown', escPressHandler);
 };
+
+formElement.addEventListener('submit', formSubmitHandler);
 
 export {
   openEditor

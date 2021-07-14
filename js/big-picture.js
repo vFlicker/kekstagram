@@ -22,10 +22,7 @@ const escPressHandler = (evt) => {
 };
 
 const closeButtonClickHandler = () => {
-  DOM.unlockScroll();
-  DOM.hideElement(pictureSectionElement);
-  closeButtonElement.removeEventListener('click', closeButtonClickHandler);
-  document.removeEventListener('keydown', escPressHandler);
+  hideBigPicture(); // eslint-disable-line no-use-before-define
 };
 
 const loadMoreButtonClickHandler = (evt) => {
@@ -43,6 +40,13 @@ const loadMoreButtonClickHandler = (evt) => {
   }
 
   updateCommentCounter(); // eslint-disable-line no-use-before-define
+};
+
+const hideBigPicture = () => {
+  DOM.unlockScroll();
+  DOM.hideElement(pictureSectionElement);
+  closeButtonElement.removeEventListener('click', closeButtonClickHandler);
+  document.removeEventListener('keydown', escPressHandler);
 };
 
 const openBigPicture = () => {
