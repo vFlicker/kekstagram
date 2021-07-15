@@ -1,4 +1,4 @@
-import {load, errorHandler} from './backend.js';
+import {getPosts} from './backend.js';
 import {renderPictures} from './render-pictures.js';
 import {getRandomElement} from './utils/common.js';
 
@@ -44,10 +44,11 @@ buttonNew.addEventListener('click', buttonNewHandle);
 buttonDiscussed.addEventListener('click', buttonDiscussedHandle);
 
 
-const onLoad = (data) => {
+const renderPhotos = (data) => {
   photosFormServer = data;
   filters.classList.remove('img-filters--inactive');
   renderPictures(photosFormServer);
 };
 
-load(onLoad, errorHandler);
+getPosts()
+  .then(renderPhotos);

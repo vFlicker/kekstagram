@@ -50,6 +50,11 @@ export const SliderSetting = {
   },
 };
 
+export const SuccessHTTPSStatusRange = {
+  MIN: 200,
+  MAX: 299,
+};
+
 export const ZoomVariables = {
   MIN: 25,
   MAX: 100,

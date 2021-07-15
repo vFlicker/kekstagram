@@ -32,8 +32,14 @@
       <section class="img-upload">
         <div class="img-upload__wrapper">
           <h2 class="img-upload__title  visually-hidden">Загрузка фотографии</h2>
-          <form class="img-upload__form" id="upload-select-image" method="post"
-            action="https://js.dump.academy/kekstagram" enctype="multipart/form-data" autocomplete="off" novalidate>
+          <form
+            class="img-upload__form"
+            id="upload-select-image"
+            action="https://js.dump.academy/kekstagram"
+            method="post"
+            enctype="multipart/form-data"
+            autocomplete="off"
+          >
 
             <!-- Изначальное состояние поля для загрузки изображения -->
             <fieldset class="img-upload__start">
@@ -50,8 +56,13 @@
                   <!-- Изменение размера изображения -->
                   <fieldset class="img-upload__scale  scale">
                     <button type="button" class="scale__control  scale__control--smaller">Уменьшить</button>
-                    <input type="text" class="scale__control  scale__control--value" value="100%" title="Image Scale"
-                      name="scale" disabled>
+                    <input
+                      class="scale__control  scale__control--value"
+                      type="text"
+                      name="scale"
+                      value="100%"
+                      readonly
+                    >
                     <button type="button" class="scale__control  scale__control--bigger">Увеличить</button>
                   </fieldset>
 
@@ -74,8 +85,14 @@
                 <fieldset class="img-upload__effects  effects">
                   <ul class="effects__list">
                     <li class="effects__item">
-                      <input type="radio" class="effects__radio  visually-hidden" name="effect" id="effect-none"
-                        value="none" checked>
+                      <input
+                        type="radio"
+                        class="effects__radio  visually-hidden"
+                        name="effect"
+                        id="effect-none"
+                        value="none"
+                        checked
+                      >
                       <label for="effect-none" class="effects__label">
                         <span class="effects__preview  effects__preview--none">Превью фото без эффекта</span>
                         Оригинал

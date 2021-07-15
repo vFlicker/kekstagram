@@ -1,71 +1,36 @@
-const URL_LOAD = 'https://22.javascript.pages.academy/kekstagram/data';
-const URL_SAVE = 'https://22.javascript.pages.academy/kekstagram';
-const SUCCESS_CODE = 200;
-const TIMEOUT = 10000;
+import {SuccessHTTPSStatusRange} from './const.js';
 
-const load = (onLoad, onError) => {
-  const xhr = new XMLHttpRequest();
-  xhr.responseType = 'json';
+const END_POINT = 'https://23.javascript.pages.academy/kekstagram';
 
-  xhr.addEventListener('load', () => {
-    if (xhr.status === SUCCESS_CODE) {
-      onLoad(xhr.response);
-    } else {
-      onError(`Статус ответа ${xhr.status}: ${xhr.statusText}`);
-    }
-  });
-  xhr.addEventListener('error', () => {
-    onError('Ошибка соединения');
-  });
-  xhr.addEventListener('timeout', () => {
-    onError(`Запрос не успел выполниться за ${xhr.timeout} мс`);
-  });
+const checkStatus = (response) => {
+  if (
+    response.status < SuccessHTTPSStatusRange.MIN ||
+    response.status > SuccessHTTPSStatusRange.MAX
+  ) {
+    throw new Error(`Статус ответа ${response.status}: ${response.statusText}`);
+  }
 
-  xhr.timeout = TIMEOUT;
-
-  xhr.open('GET', URL_LOAD);
-  xhr.send();
+  return response;
 };
 
-const save = (data, onLoad, onError) => {
-  const xhr = new XMLHttpRequest();
-  xhr.responseType = 'json';
-
-  xhr.addEventListener('load', () => {
-    if (xhr.status === SUCCESS_CODE) {
-      onLoad(xhr.response);
-    } else {
-      onError(`Статус ответа ${xhr.status}: ${xhr.statusText}`);
-    }
-  });
-  xhr.addEventListener('error', () => {
-    onError('Ошибка соединения');
-  });
-  xhr.addEventListener('timeout', () => {
-    onError(`Запрос не успел выполниться за ${xhr.timeout} мс`);
-  });
-
-  xhr.timeout = TIMEOUT;
-
-  xhr.open('POST', URL_SAVE);
-  xhr.send();
+const catchError = (err) => {
+  throw err;
 };
 
-const errorHandler = (errorMessage) => {
-  const node = document.createElement('div');
-  node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: #ff4d4d;';
-  node.style.position = 'absolute';
-  node.style.left = 0;
-  node.style.right = 0;
-  node.style.fontSize = '30px';
-  node.style.padding = '10px';
+const toJSON = (response) => response.json();
 
-  node.textContent = errorMessage;
-  document.body.insertAdjacentElement('afterbegin', node);
-};
+const getPosts = () => fetch(`${END_POINT}/data`)
+  .then(checkStatus)
+  .catch(catchError)
+  .then(toJSON);
+
+const addPost = (post, successHandler, errorHandler) => fetch(END_POINT, {method: 'POST', body: post})
+  .then(checkStatus)
+  .catch(errorHandler)
+  .then(toJSON)
+  .then(successHandler);
 
 export {
-  load,
-  save,
-  errorHandler
+  getPosts,
+  addPost
 };
