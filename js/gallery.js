@@ -1,4 +1,4 @@
-import {getPosts} from './backend.js';
+import {getPosts} from './api.js';
 import {renderPictures} from './render-pictures.js';
 import {getRandomElement} from './utils/common.js';
 

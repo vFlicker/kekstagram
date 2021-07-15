@@ -1,4 +1,4 @@
-import {addPost} from '../backend.js';
+import {addPost} from '../api.js';
 import {isEscEvent} from '../utils/common.js';
 import {DOM} from '../utils/DOM.js';
 import {showSuccess} from '../utils/notification/success.js';
