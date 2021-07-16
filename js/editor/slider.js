@@ -24,12 +24,6 @@ const setClassNameForPicture = (effectName) => {
   pictureElement.classList.add(`${FILTER_CLASS_PREFIX}${effectName}`);
 };
 
-const setDefaultFilter = () => {
-  SliderEffect[EffectName.NONE]();
-  setClassNameForPicture(EffectName.NONE);
-  DOM.hideElement(scaleElement);
-};
-
 const createSlider = (effectName) => {
   window.noUiSlider.create(
     sliderElement,
@@ -51,6 +45,13 @@ const destroySlider = () => {
   if (sliderElement.noUiSlider) {
     sliderElement.noUiSlider.destroy();
   }
+};
+
+const setDefaultFilter = () => {
+  SliderEffect[EffectName.NONE]();
+  setClassNameForPicture(EffectName.NONE);
+  DOM.hideElement(scaleElement);
+  destroySlider();
 };
 
 const filterChangeHandler = (evt) => {
@@ -81,3 +82,5 @@ setDefaultFilter();
 filterElements.forEach((filter) => {
   filter.addEventListener('change', filterChangeHandler);
 });
+
+export {setDefaultFilter};

@@ -1,11 +1,11 @@
 import {addPost} from '../api.js';
+import {setDefaultFilter} from './slider.js';
+import {clearInputs} from './validation.js';
+import {setDefaultZoomValue} from './zoom.js';
 import {isEscEvent} from '../utils/common.js';
 import {DOM} from '../utils/DOM.js';
 import {showSuccess} from '../utils/notification/success.js';
 import {showError} from '../utils/notification/error.js';
-import './zoom.js';
-import './slider.js';
-import './validation.js';
 
 const formElement = document.querySelector('.img-upload__form');
 const editorElement = formElement.querySelector('.img-upload__overlay');
@@ -39,7 +39,14 @@ const formSubmitHandler = (evt) => {
     .catch(errorHandler);
 };
 
+const clearForm = () => {
+  clearInputs();
+  setDefaultZoomValue();
+  setDefaultFilter();
+};
+
 const hideEditor = () => {
+  clearForm();
   DOM.unlockScroll();
   DOM.hideElement(editorElement);
   closeButtonElement.removeEventListener('click', closeButtonClickHandler);

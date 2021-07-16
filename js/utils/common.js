@@ -22,4 +22,4 @@ export const getRandomElement = (items) => {
 
 export const isEscEvent = (keycode) => keycode === ESC_KEYCODE;
 
-export const sortByDiscussed = (firstPost, secondPost) => firstPost.comments.length - secondPost.comments.length;
+export const sortByDiscussed = (firstPost, secondPost) => secondPost.comments.length - firstPost.comments.length;

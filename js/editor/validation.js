@@ -91,3 +91,8 @@ const commentInputHandler = (evt) => {
 
 hashtagElement.addEventListener('input', hashtagInputHandler);
 commentElement.addEventListener('input', commentInputHandler);
+
+export const clearInputs = () => {
+  hashtagElement.textContent = '';
+  commentElement.textContent = '';
+};

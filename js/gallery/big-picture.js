@@ -96,10 +96,9 @@ const removeLoadMoreButton = () => {
 
 const addComments = () => {
   const commentCount = comments.length;
-  const renderTo = Math.min(commentCount, renderedCommentCount + COMMENT_COUNT_PER_STEP);
 
   removeComments();
-  renderComments(0, renderTo);
+  renderComments(0, COMMENT_COUNT_PER_STEP);
 
   if (commentCount > COMMENT_COUNT_PER_STEP) {
     renderedCommentCount = COMMENT_COUNT_PER_STEP;
