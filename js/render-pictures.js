@@ -1,4 +1,5 @@
 import {addContentToBigPicture} from './big-picture.js';
+import {DOM} from './utils/DOM.js';
 
 const pictureTemplate = document.querySelector('#picture')
   .content
@@ -20,10 +21,16 @@ const createPicture = (picture) => {
   return pictureElement;
 };
 
+const clearPictureList = () => {
+  const pictureElements = document.querySelectorAll('.picture');
+  pictureElements.forEach(DOM.removeElement);
+};
+
 export const renderPictures = (pictures) => {
   const pictureListFragment = document.createDocumentFragment();
   const pictureListElement = document.querySelector('.pictures');
 
+  clearPictureList();
   pictures.forEach((picture) => pictureListFragment.appendChild(createPicture(picture)));
 
   pictureListElement.appendChild(pictureListFragment);
