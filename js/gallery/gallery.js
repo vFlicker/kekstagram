@@ -1,7 +1,6 @@
-import {getPosts} from './api.js';
 import {renderPictures} from './render-pictures.js';
-import {getRandomElement, sortByDiscussed} from './utils/common.js';
-import {SortType} from './const.js';
+import {getRandomElement, sortByDiscussed} from '../utils/common.js';
+import {SortType} from '../const.js';
 
 const filterElement = document.querySelector('.img-filters');
 const formElement = filterElement.querySelector('.img-filters__form');
@@ -42,11 +41,8 @@ const formItemClickHandler = (evt) => {
 
 formElement.addEventListener('click', formItemClickHandler);
 
-const renderPhotos = (data) => {
+export const renderPhotos = (data) => {
   photosFormServer = data;
   filterElement.classList.remove('img-filters--inactive');
   renderPictures(photosFormServer);
 };
-
-getPosts()
-  .then(renderPhotos);

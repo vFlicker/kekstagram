@@ -1,5 +1,5 @@
 import {DOM} from '../utils/DOM.js';
-import {EffectName, SliderSetting} from '../const.js';
+import {EffectName, sliderSetting} from '../const.js';
 
 const formElement = document.querySelector('.img-upload__form');
 const pictureElement = formElement.querySelector('.img-upload__preview img');
@@ -20,7 +20,7 @@ const FILTER_CLASS_PREFIX = 'effects__preview--';
 let currentEffectName = EffectName.NONE;
 
 const setClassNameForPicture = (effectName) => {
-  pictureElement.classList = '';
+  pictureElement.className = '';
   pictureElement.classList.add(`${FILTER_CLASS_PREFIX}${effectName}`);
 };
 
@@ -35,7 +35,7 @@ const createSlider = (effectName) => {
     sliderElement,
     Object.assign(
       {},
-      SliderSetting[effectName],
+      sliderSetting[effectName],
       {connect: 'lower'},
     ),
   );
@@ -44,7 +44,7 @@ const createSlider = (effectName) => {
 };
 
 const updateSlider = (effectName) => {
-  sliderElement.noUiSlider.updateOptions(SliderSetting[effectName]);
+  sliderElement.noUiSlider.updateOptions(sliderSetting[effectName]);
 };
 
 const destroySlider = () => {

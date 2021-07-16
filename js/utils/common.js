@@ -20,11 +20,6 @@ export const getRandomElement = (items) => {
   return shuffledItems;
 };
 
-export const getRandomValueFromArray = (array) => {
-  const randomIndex = getRandomInteger(0, array.length - 1);
-  return array[randomIndex];
-};
-
 export const isEscEvent = (keycode) => keycode === ESC_KEYCODE;
 
 export const sortByDiscussed = (firstPost, secondPost) => firstPost.comments.length - secondPost.comments.length;

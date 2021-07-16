@@ -1,7 +1,7 @@
 import {isEscEvent} from '../common.js';
 import {DOM} from '../DOM.js';
 
-const bodyElement = document.querySelector('body');
+const mainElement = document.querySelector('main');
 const errorTemplate = document.querySelector('#error').content.querySelector('.error');
 let errorElement = null;
 
@@ -34,5 +34,5 @@ const createErrorNotification = () => {
 
 export const showError = () => {
   const errorNotification = createErrorNotification();
-  bodyElement.appendChild(errorNotification);
+  mainElement.appendChild(errorNotification);
 };

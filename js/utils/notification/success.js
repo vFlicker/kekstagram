@@ -1,8 +1,8 @@
 import {isEscEvent} from '../common.js';
 import {DOM} from '../DOM.js';
 
-const bodyElement = document.querySelector('body');
-const successTemplate = bodyElement.querySelector('#success').content.querySelector('.success');
+const mainElement = document.querySelector('main');
+const successTemplate = document.querySelector('#success').content.querySelector('.success');
 let successElement = null;
 
 const escPressHandler = (evt) => {
@@ -34,5 +34,5 @@ const createSuccessNotification = () => {
 
 export const showSuccess = () => {
   const successNotification = createSuccessNotification();
-  bodyElement.appendChild(successNotification);
+  mainElement.appendChild(successNotification);
 };

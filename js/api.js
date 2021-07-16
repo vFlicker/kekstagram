@@ -19,18 +19,11 @@ const catchError = (err) => {
 
 const toJSON = (response) => response.json();
 
-const getPosts = () => fetch(`${END_POINT}/data`)
+export const getPosts = () => fetch(`${END_POINT}/data`)
   .then(checkStatus)
   .catch(catchError)
   .then(toJSON);
 
-const addPost = (post, successHandler, errorHandler) => fetch(END_POINT, {method: 'POST', body: post})
+export const addPost = (post) => fetch(END_POINT, {method: 'POST', body: post})
   .then(checkStatus)
-  .catch(errorHandler)
-  .then(toJSON)
-  .then(successHandler);
-
-export {
-  getPosts,
-  addPost
-};
+  .then(toJSON);

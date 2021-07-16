@@ -7,7 +7,7 @@ export const EffectName = {
   HEAT: 'heat',
 };
 
-export const SliderSetting = {
+export const sliderSetting = {
   chrome: {
     range: {
       max: 1,

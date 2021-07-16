@@ -1,5 +1,5 @@
 import {addContentToBigPicture} from './big-picture.js';
-import {DOM} from './utils/DOM.js';
+import {DOM} from '../utils/DOM.js';
 
 const pictureTemplate = document.querySelector('#picture')
   .content

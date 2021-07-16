@@ -2,10 +2,10 @@ import {openEditor} from './editor.js';
 
 const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 
-const fileChooser = document.querySelector('.img-upload__start input[type=file]');
-const preview = document.querySelector('.img-upload__preview img');
+const fileChooserElement = document.querySelector('.img-upload__start input[type=file]');
+const previewElement = document.querySelector('.img-upload__preview img');
 
-fileChooser.addEventListener('change', (evt) => {
+fileChooserElement.addEventListener('change', (evt) => {
   const file = evt.target.files[0];
   const fileName = file.name.toLowerCase();
 
@@ -15,7 +15,7 @@ fileChooser.addEventListener('change', (evt) => {
     const reader = new FileReader();
 
     reader.addEventListener('load', () => {
-      preview.src = reader.result;
+      previewElement.src = reader.result;
       openEditor();
     });
 

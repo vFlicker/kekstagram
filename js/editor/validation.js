@@ -9,42 +9,42 @@ const MAX_HASHTAG_COUNT = 5;
 const MAX_COMMENT_LENGTH = 140;
 const hashtagRegexp = new RegExp('^#[A-Za-zА-Яа-я0-9]{1,19}$');
 
-const isHashtegs = (input) => {
-  const hashtegs = input.value.split(' ');
+const isHashtags = (input) => {
+  const hashtags = input.value.split(' ');
 
-  if (hashtegs.length > MAX_HASHTAG_COUNT) {
-    input.setCustomValidity(`Максимальное количество хэштегов — ${MAX_HASHTAG_COUNT}`);
+  if (hashtags.length > MAX_HASHTAG_COUNT) {
+    input.setCustomValidity(`Максимальное количество хэш-тегов — ${MAX_HASHTAG_COUNT}`);
     return false;
   }
 
-  if (new Set(hashtegs).size !== hashtegs.length) {
+  if (new Set(hashtags).size !== hashtags.length) {
     input.setCustomValidity('Хэштеги должны быть уникальными');
     return false;
   }
 
-  for (const hashteg of hashtegs) {
-    if (hashteg === '') {
+  for (const hashtag of hashtags) {
+    if (hashtag === '') {
       input.setCustomValidity('Хэштеги разделяются пробелами');
       return false;
     }
 
-    if (hashteg[0] !== '#') {
+    if (hashtag[0] !== '#') {
       input.setCustomValidity('Хэштег должен начинаться с #');
       return false;
     }
 
-    if (hashteg.length < MIN_HASHTAG_LENGTH) {
-      input.setCustomValidity(`Минимальная длинна хэштега ${MIN_HASHTAG_LENGTH} символа`);
+    if (hashtag.length < MIN_HASHTAG_LENGTH) {
+      input.setCustomValidity(`Минимальная длинна хэш-тега ${MIN_HASHTAG_LENGTH} символа`);
       return false;
     }
 
-    if (hashteg.length > MAX_HASHTAG_LENGTH) {
-      input.setCustomValidity(`Максимальная длинна хэштега ${MAX_HASHTAG_LENGTH} символа`);
+    if (hashtag.length > MAX_HASHTAG_LENGTH) {
+      input.setCustomValidity(`Максимальная длинна хэш-тега ${MAX_HASHTAG_LENGTH} символа`);
       return false;
     }
 
-    if (!hashtagRegexp.test(hashteg)) {
-      input.setCustomValidity('Cтрока после # не может содержать спецсимволов');
+    if (!hashtagRegexp.test(hashtag)) {
+      input.setCustomValidity('Строка после # не может содержать спецсимволов');
       return false;
     }
   }
@@ -66,7 +66,7 @@ const isMaxLength = (input, maxLength) => {
 const hashtagInputHandler = (evt) => {
   const input = evt.target;
 
-  if (!isHashtegs(input)) {
+  if (!isHashtags(input)) {
     input.reportValidity();
     submitElement.disabled = true;
     return;

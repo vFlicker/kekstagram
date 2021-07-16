@@ -1,8 +1,8 @@
-import {isEscEvent} from './utils/common.js';
-import {DOM} from './utils/DOM.js';
+import {isEscEvent} from '../utils/common.js';
+import {DOM} from '../utils/DOM.js';
 
 const COMMENT_COUNT_PER_STEP = 5;
-let renderedComentCount = COMMENT_COUNT_PER_STEP;
+let renderedCommentCount = COMMENT_COUNT_PER_STEP;
 let comments = [];
 
 const bodyElement = document.querySelector('body');
@@ -29,13 +29,13 @@ const loadMoreButtonClickHandler = (evt) => {
   evt.preventDefault();
 
   const commentCount = comments.length;
-  const renderTo = Math.min(commentCount, renderedComentCount + COMMENT_COUNT_PER_STEP);
+  const renderTo = Math.min(commentCount, renderedCommentCount + COMMENT_COUNT_PER_STEP);
 
-  renderComments(renderedComentCount, renderTo); // eslint-disable-line no-use-before-define
+  renderComments(renderedCommentCount, renderTo); // eslint-disable-line no-use-before-define
 
-  renderedComentCount = renderTo;
+  renderedCommentCount = renderTo;
 
-  if (commentCount <= renderedComentCount) {
+  if (commentCount <= renderedCommentCount) {
     removeLoadMoreButton(); // eslint-disable-line no-use-before-define
   }
 
@@ -85,8 +85,8 @@ const renderComments = (from, to) => {
 const removeComments = () => commentListElement.innerHTML = '';
 
 const updateCommentCounter = () => {
-  const totalСomments = comments.length;
-  commentCounterElement.textContent = `${renderedComentCount} из ${totalСomments} комментариев`;
+  const totalComments = comments.length;
+  commentCounterElement.textContent = `${renderedCommentCount} из ${totalComments} комментариев`;
 };
 
 const removeLoadMoreButton = () => {
@@ -96,24 +96,24 @@ const removeLoadMoreButton = () => {
 
 const addComments = () => {
   const commentCount = comments.length;
-  const renderTo = Math.min(commentCount, renderedComentCount + COMMENT_COUNT_PER_STEP);
+  const renderTo = Math.min(commentCount, renderedCommentCount + COMMENT_COUNT_PER_STEP);
 
   removeComments();
   renderComments(0, renderTo);
 
   if (commentCount > COMMENT_COUNT_PER_STEP) {
-    renderedComentCount = COMMENT_COUNT_PER_STEP;
+    renderedCommentCount = COMMENT_COUNT_PER_STEP;
     DOM.showElement(loadMoreButtonElement);
     loadMoreButtonElement.addEventListener('click', loadMoreButtonClickHandler);
   } else {
-    renderedComentCount = commentCount;
+    renderedCommentCount = commentCount;
     removeLoadMoreButton();
   }
 
   updateCommentCounter();
 };
 
-const addContentToBigPicture = (data) => {
+export const addContentToBigPicture = (data) => {
   comments = [...data.comments];
 
   imageElement.src = data.url;
@@ -122,8 +122,4 @@ const addContentToBigPicture = (data) => {
 
   addComments();
   openBigPicture();
-};
-
-export {
-  addContentToBigPicture
 };

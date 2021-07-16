@@ -6,7 +6,6 @@ import {showError} from '../utils/notification/error.js';
 import './zoom.js';
 import './slider.js';
 import './validation.js';
-import './file-chooser.js';
 
 const formElement = document.querySelector('.img-upload__form');
 const editorElement = formElement.querySelector('.img-upload__overlay');
@@ -22,12 +21,12 @@ const closeButtonClickHandler = () => {
   hideEditor(); // eslint-disable-line no-use-before-define
 };
 
-const handleSuccess = () => {
+const successHandler = () => {
   showSuccess();
   hideEditor(); // eslint-disable-line no-use-before-define
 };
 
-const handleError = () => {
+const errorHandler = () => {
   showError();
   hideEditor(); // eslint-disable-line no-use-before-define
 };
@@ -35,7 +34,9 @@ const handleError = () => {
 const formSubmitHandler = (evt) => {
   evt.preventDefault();
 
-  addPost(new FormData(formElement), handleSuccess, handleError);
+  addPost(new FormData(formElement))
+    .then(successHandler)
+    .catch(errorHandler);
 };
 
 const hideEditor = () => {
@@ -46,14 +47,10 @@ const hideEditor = () => {
   document.removeEventListener('keydown', escPressHandler);
 };
 
-const openEditor = () => {
+export const openEditor = () => {
   DOM.lockScroll();
   DOM.showElement(editorElement);
   closeButtonElement.addEventListener('click', closeButtonClickHandler);
   formElement.addEventListener('submit', formSubmitHandler);
   document.addEventListener('keydown', escPressHandler);
-};
-
-export {
-  openEditor
 };
