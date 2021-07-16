@@ -50,6 +50,12 @@ export const SliderSetting = {
   },
 };
 
+export const SortType = {
+  DEFAULT: 'filter-default',
+  RANDOM: 'filter-random',
+  DISCUSSED: 'filter-discussed',
+};
+
 export const SuccessHTTPSStatusRange = {
   MIN: 200,
   MAX: 299,

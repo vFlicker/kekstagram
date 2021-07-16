@@ -1,52 +1,50 @@
 import {getPosts} from './api.js';
 import {renderPictures} from './render-pictures.js';
-import {getRandomElement} from './utils/common.js';
+import {getRandomElement, sortByDiscussed} from './utils/common.js';
+import {SortType} from './const.js';
 
-let photosFormServer;
+const filterElement = document.querySelector('.img-filters');
+const formElement = filterElement.querySelector('.img-filters__form');
+let currentSortType = SortType.DEFAULT;
+let photosFormServer = [];
 
-const filtersForm = document.querySelector('.img-filters__form');
-const buttons = filtersForm.querySelectorAll('.img-filters__button');
-const buttonPopular = filtersForm.querySelector('#filter-popular');
-const buttonNew = filtersForm.querySelector('#filter-new');
-const buttonDiscussed = filtersForm.querySelector('#filter-discussed');
-const filters = document.querySelector('.img-filters');
+const formItemClickHandler = (evt) => {
+  evt.preventDefault();
 
-const photoDiscusseComparator = (left, right) => right.comments.length - left.comments.length;
+  const newSortType = evt.target.id;
 
-const changeActiveButton = (activeButton) => {
-  for (let i = 0; i < buttons.length; i++) {
-    buttons[i].classList.remove('img-filters__button--active');
+  if (newSortType === currentSortType) {
+    return;
   }
-  activeButton.classList.add('img-filters__button--active');
+
+  formElement
+    .querySelector(`#${currentSortType}`)
+    .classList.remove('img-filters__button--active');
+
+  formElement
+    .querySelector(`#${newSortType}`)
+    .classList.add('img-filters__button--active');
+
+  currentSortType = newSortType;
+
+  switch (currentSortType) {
+    case SortType.RANDOM:
+      renderPictures(getRandomElement(photosFormServer, 10));
+      break;
+    case SortType.DISCUSSED:
+      renderPictures(photosFormServer.slice().sort(sortByDiscussed));
+      break;
+    default:
+      renderPictures(photosFormServer);
+      break;
+  }
 };
 
-const buttonPopularNewHandle = (evt) => {
-  evt.preventDefault();
-  changeActiveButton(buttonPopular);
-  renderPictures(photosFormServer);
-};
-
-const buttonNewHandle = (evt) => {
-  evt.preventDefault();
-  changeActiveButton(buttonNew);
-  renderPictures(getRandomElement(photosFormServer, 10));
-};
-
-const buttonDiscussedHandle = (evt) => {
-  evt.preventDefault();
-  changeActiveButton(buttonDiscussed);
-  const photosFormServerCopy = photosFormServer.slice();
-  renderPictures(photosFormServerCopy.sort(photoDiscusseComparator));
-};
-
-buttonPopular.addEventListener('click', buttonPopularNewHandle);
-buttonNew.addEventListener('click', buttonNewHandle);
-buttonDiscussed.addEventListener('click', buttonDiscussedHandle);
-
+formElement.addEventListener('click', formItemClickHandler);
 
 const renderPhotos = (data) => {
   photosFormServer = data;
-  filters.classList.remove('img-filters--inactive');
+  filterElement.classList.remove('img-filters--inactive');
   renderPictures(photosFormServer);
 };
 

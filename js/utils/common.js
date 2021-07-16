@@ -26,3 +26,5 @@ export const getRandomValueFromArray = (array) => {
 };
 
 export const isEscEvent = (keycode) => keycode === ESC_KEYCODE;
+
+export const sortByDiscussed = (firstPost, secondPost) => firstPost.comments.length - secondPost.comments.length;
