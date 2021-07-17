@@ -28,8 +28,15 @@ const plusButtonClickHandler = () => {
   }
 };
 
-minusButtonElement.addEventListener('click', minusButtonClickHandler);
-plusButtonElement.addEventListener('click', plusButtonClickHandler);
+export const setZoomListeners = () => {
+  minusButtonElement.addEventListener('click', minusButtonClickHandler);
+  plusButtonElement.addEventListener('click', plusButtonClickHandler);
+};
+
+export const removeZoomListeners = () => {
+  minusButtonElement.removeEventListener('click', minusButtonClickHandler);
+  plusButtonElement.removeEventListener('click', plusButtonClickHandler);
+};
 
 export const setDefaultZoomValue = () => {
   photoElement.style.width = `${DEFAULT_SCALE_VALUE}%`;

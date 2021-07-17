@@ -5,7 +5,7 @@ const formElement = document.querySelector('.img-upload__form');
 const pictureElement = formElement.querySelector('.img-upload__preview img');
 const sliderElement = formElement.querySelector('.effect-level__slider');
 const scaleElement = formElement.querySelector('.img-upload__effect-level');
-const filterElements = formElement.querySelectorAll('.effects__radio');
+const filterContainerElement = formElement.querySelector('.effects__list');
 
 const SliderEffect = {
   [EffectName.NONE]: () => pictureElement.style.filter = 'none',
@@ -47,19 +47,12 @@ const destroySlider = () => {
   }
 };
 
-const setDefaultFilter = () => {
-  SliderEffect[EffectName.NONE]();
-  setClassNameForPicture(EffectName.NONE);
-  DOM.hideElement(scaleElement);
-  destroySlider();
-};
-
 const filterChangeHandler = (evt) => {
   currentEffectName = evt.target.value;
   setClassNameForPicture(currentEffectName);
 
   if (currentEffectName === EffectName.NONE) {
-    setDefaultFilter();
+    setDefaultFilter(); // eslint-disable-line no-use-before-define
     destroySlider();
     return;
   }
@@ -77,10 +70,17 @@ const filterChangeHandler = (evt) => {
   });
 };
 
-setDefaultFilter();
+export const setFilterListener = () => {
+  filterContainerElement.addEventListener('change', filterChangeHandler);
+};
 
-filterElements.forEach((filter) => {
-  filter.addEventListener('change', filterChangeHandler);
-});
+export const removeFilterListener = () => {
+  filterContainerElement.removeEventListener('change', filterChangeHandler);
+};
 
-export {setDefaultFilter};
+export const setDefaultFilter = () => {
+  SliderEffect[EffectName.NONE]();
+  setClassNameForPicture(EffectName.NONE);
+  DOM.hideElement(scaleElement);
+  destroySlider();
+};

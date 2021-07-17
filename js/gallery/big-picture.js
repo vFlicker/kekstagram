@@ -45,6 +45,7 @@ const loadMoreButtonClickHandler = (evt) => {
 const hideBigPicture = () => {
   DOM.unlockScroll();
   DOM.hideElement(pictureSectionElement);
+  loadMoreButtonElement.removeEventListener('click', loadMoreButtonClickHandler);
   closeButtonElement.removeEventListener('click', closeButtonClickHandler);
   document.removeEventListener('keydown', escPressHandler);
 };

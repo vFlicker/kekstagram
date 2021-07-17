@@ -89,8 +89,15 @@ const commentInputHandler = (evt) => {
   submitElement.disabled = false;
 };
 
-hashtagElement.addEventListener('input', hashtagInputHandler);
-commentElement.addEventListener('input', commentInputHandler);
+export const setInputListeners = () => {
+  hashtagElement.addEventListener('input', hashtagInputHandler);
+  commentElement.addEventListener('input', commentInputHandler);
+};
+
+export const removeInputListeners = () => {
+  hashtagElement.removeEventListener('input', hashtagInputHandler);
+  commentElement.removeEventListener('input', commentInputHandler);
+};
 
 export const clearInputs = () => {
   hashtagElement.textContent = '';
