@@ -1,4 +1,18 @@
+const DEBOUNCE_INTERVAL = 500;
 const ESC_KEYCODE = 27;
+
+export const debounce = (callback, delay = DEBOUNCE_INTERVAL) => {
+  let timeout;
+
+  return (...args) => {
+    const later = () => {
+      callback(...args);
+    };
+
+    clearTimeout(timeout);
+    timeout = setTimeout(later, delay);
+  };
+};
 
 const getRandomInteger = (min = 0, max = 1) => {
   const lower = Math.ceil(Math.min(min, max));
