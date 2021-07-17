@@ -1,6 +1,9 @@
 import {DOM} from '../utils/DOM.js';
 import {EffectName, sliderSetting} from '../const.js';
 
+import noUiSlider from 'nouislider';
+import 'nouislider/dist/nouislider.css';
+
 const formElement = document.querySelector('.img-upload__form');
 const pictureElement = formElement.querySelector('.img-upload__preview img');
 const sliderElement = formElement.querySelector('.effect-level__slider');
@@ -25,7 +28,7 @@ const setClassNameForPicture = (effectName) => {
 };
 
 const createSlider = (effectName) => {
-  window.noUiSlider.create(
+  noUiSlider.create(
     sliderElement,
     Object.assign(
       {},

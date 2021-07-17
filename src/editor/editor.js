@@ -75,5 +75,3 @@ export const openEditor = () => {
   DOM.showElement(editorElement);
   addListeners();
 };
-
-openEditor();

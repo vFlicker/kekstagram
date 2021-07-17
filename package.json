@@ -4,16 +4,24 @@
   "private": true,
   "description": "Проект «Кекстаграм» от HTML Academy",
   "scripts": {
-    "eslint": "eslint --fix js/**/*.js",
+    "build": "webpack --mode production",
+    "eslint": "eslint --fix src/**/*.js",
     "test": "npm run eslint",
-    "start": "browser-sync start --server --no-ui --files \"js/**/*.js\""
+    "start": "webpack serve --open --mode development"
   },
   "engines": {
     "node": "12"
   },
   "devDependencies": {
-    "browser-sync": "2.26.14",
+    "css-loader": "5.2.6",
     "eslint": "7.18.0",
-    "eslint-config-htmlacademy": "4.0.2"
+    "eslint-config-htmlacademy": "4.0.2",
+    "style-loader": "2.0.0",
+    "webpack": "5.11.1",
+    "webpack-cli": "4.5.0",
+    "webpack-dev-server": "3.11.2"
+  },
+  "dependencies": {
+    "nouislider": "15.2.0"
   }
 }
